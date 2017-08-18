@@ -21,7 +21,11 @@ namespace ADL
         #endregion
 
         #region  建立MySql数据库连接
-        MySqlConnection con = new MySqlConnection("server=web.prj.com;user id=root;password=root;database=dome1"); //根据自己的设置http://sosoft.cnblogs.com/
+        /// <summary>
+        /// 服务器：ip=119.23.59.68; port=330;
+        /// 本地  : ip=192.168.1.104;port=3306;
+        /// </summary>
+        MySqlConnection con = new MySqlConnection("server=119.23.59.68;port=330;user id=root;password=root;database=ally"); //根据自己的设置http://sosoft.cnblogs.com/
         MySqlCommand cmd;
         MySqlDataReader dr;
         #endregion

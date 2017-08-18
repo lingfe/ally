@@ -23,7 +23,9 @@ namespace dome1
             InitializeComponent();
         }
 
-        //创建对象
+        /// <summary>
+        /// 创建对象
+        /// </summary>
         employeeLevelSql sql = new employeeLevelSql();
         employeeLevelLogSql sqlLog = new employeeLevelLogSql();
 
@@ -369,6 +371,12 @@ namespace dome1
                     MessageBox.Show("不能选择自己作为父级！"); return;
                 }
                 emp.Shuxin = cob_shuxin.Text;
+                List<employeeLevel> getJobNumberList = sql.getJobNumberList(emp.JobNumber);
+                if (getJobNumberList.Count >= 1)
+                {
+                    MessageBox.Show("工号重复了！", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    return;
+                }
                 //调用Update
                 int tt = sql.setEmployeeLevelUpdate(emp);
                 if (tt == 1)
@@ -416,13 +424,20 @@ namespace dome1
             //父id
             emp.Parent_id = Int32.Parse(cob_parent_id.Text.Split('.')[0].ToString());
             emp.Shuxin = cob_shuxin.Text;
+
+            List<employeeLevel> getJobNumberList = sql.getJobNumberList(emp.JobNumber);
+            if (getJobNumberList.Count >= 1)
+            {
+                MessageBox.Show("工号重复了！", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                return;
+            }
             //调用add
             int tt = sql.setEmployeeLeveLAdd(emp);
             if (tt == 1)
             {
                 //调用函数,加载，刷新
                 this.dataNode();
-                
+
                 employeeLevelLog empLog = new employeeLevelLog();
                 List<employeeLevel> st= sql.getEmployeeLevelParent(emp.Parent_id);
                 if(st!=null && st.Count!=0){
@@ -565,7 +580,8 @@ namespace dome1
         /// <param name="e"></param>
         private void button3_Click_1(object sender, EventArgs e)
         {
-                        //判断是否选中了
+
+            //判断是否选中了
             if (listView1.SelectedItems.Count != 0 || listView3.SelectedItems.Count != 0)
             {
                 //得到id
@@ -573,6 +589,12 @@ namespace dome1
                 //判断是否选中了
                 if (id.Length != 0 && id != "")
                 {
+                    DialogResult dr = MessageBox.Show("您确定要删除吗？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    if (dr != DialogResult.OK)
+                    {
+                        //点取消的代码
+                        return;
+                    }
                     int num = Int32.Parse(id);
                     int tt = sql.setEmployeeLevelDelete(num);
                     if (tt != -1)
@@ -670,6 +692,9 @@ namespace dome1
                 cob_parent_id.Items.Add("0.一级");
                 cob_parent_id.Items.Add(listView1.SelectedItems[0].SubItems[0].Text + "." + listView1.SelectedItems[0].SubItems[1].Text);
                 cob_parent_id.SelectedIndex = 1;
+                txt_jobNumber.Text = "";
+                txt_stock.Text = "";
+                txt_userName.Text = "";
                 cob_shuxin.SelectedIndex = 1;
             }
             else {
@@ -732,9 +757,9 @@ namespace dome1
         public void Addtreeview()
         {
             TreeNode de = treeView1.SelectedNode;
-            if (treeView1.SelectedNode != null)
+            if (treeView1.SelectedNode != null && de.Level>0)
             {
-                MessageBox.Show(de.Text, "选中了");
+                //MessageBox.Show(de.Text, "选中了");
                 return;
             }
         }

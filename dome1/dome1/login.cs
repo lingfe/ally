@@ -23,7 +23,11 @@ namespace dome1
         adminSql sql = new adminSql();
 
 
-
+        /// <summary>
+        /// 点击登录
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_login_Click(object sender, EventArgs e)
         {
             string userName=textBox1.Text;
@@ -41,7 +45,7 @@ namespace dome1
             
             if (st.Count > 0)
             {
-                MessageBox.Show("登录成功、！");
+                MessageBox.Show("登录成功！");
                 PublicField.userName = st[0].UserName;
                 employeeLevelMain main = new employeeLevelMain();
                 main.Show();

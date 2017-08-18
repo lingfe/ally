@@ -38,6 +38,16 @@ namespace BLL
             List<employeeLevel> st = new List<employeeLevel>();
             return st = ple.getEmployeeLevel(string.Format("SELECT * FROM employeeLevel t WHERE t.id={0}", id));
         }
+        
+        /// <summary>
+        /// 根据工号查询
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public List<employeeLevel> getJobNumberList(string jobNumber) {
+            List<employeeLevel> st = new List<employeeLevel>();
+            return st = ple.getEmployeeLevel(string.Format("SELECT * FROM employeeLevel t WHERE t.jobNumber={0}", jobNumber));
+        }
 
         /// <summary>
         /// 返回员工子级结果

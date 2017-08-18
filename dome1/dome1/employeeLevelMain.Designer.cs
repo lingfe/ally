@@ -210,7 +210,7 @@
             this.toolStripTextBox1,
             this.选为上级ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(157, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(157, 92);
             // 
             // 刷新ToolStripMenuItem
             // 
@@ -557,7 +557,7 @@
             // 
             this.cob_shuxin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cob_shuxin.Items.AddRange(new object[] {
-            "员工",
+            "盟友",
             "商户"});
             this.cob_shuxin.Location = new System.Drawing.Point(667, 443);
             this.cob_shuxin.Name = "cob_shuxin";
@@ -584,7 +584,7 @@
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(1012, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(1043, 17);
             this.toolStripStatusLabel2.Spring = true;
             this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
             this.toolStripStatusLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
