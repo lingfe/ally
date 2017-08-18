@@ -1,0 +1,7 @@
+G:\dome1\ADL\bin\Debug\ADL.dll
+G:\dome1\ADL\bin\Debug\ADL.pdb
+G:\dome1\ADL\bin\Debug\Model.dll
+G:\dome1\ADL\bin\Debug\Model.pdb
+G:\dome1\ADL\obj\Debug\ADL.csprojResolveAssemblyReference.cache
+G:\dome1\ADL\obj\Debug\ADL.dll
+G:\dome1\ADL\obj\Debug\ADL.pdb

@@ -1,0 +1,9 @@
+G:\dome1\BLL\bin\Debug\BLL.dll
+G:\dome1\BLL\bin\Debug\BLL.pdb
+G:\dome1\BLL\bin\Debug\ADL.dll
+G:\dome1\BLL\bin\Debug\Model.dll
+G:\dome1\BLL\bin\Debug\ADL.pdb
+G:\dome1\BLL\bin\Debug\Model.pdb
+G:\dome1\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+G:\dome1\BLL\obj\Debug\BLL.dll
+G:\dome1\BLL\obj\Debug\BLL.pdb
