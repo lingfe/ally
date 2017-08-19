@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ADL;
 using Model;
+using System.Data;
 
 namespace BLL
 {
@@ -27,6 +28,15 @@ namespace BLL
             List<employeeLevel> st = new List<employeeLevel>();
             return st = ple.getEmployeeLevel(string.Format("SELECT * FROM employeeLevel"));
         }
+
+        /// <summary>
+        ///  返回所有员工结果，DataTable类型
+        /// </summary>
+        /// <returns></returns>
+        public DataTable getEmployeeLevelDataTable() {
+            return ple.getEmployeeLevelDataTable(string.Format("SELECT * FROM employeeLevel"));
+        }
+
 
         /// <summary>
         /// 返回员工父级结果
@@ -57,7 +67,7 @@ namespace BLL
         public List<employeeLevel> getEmployeeLevelAchild(int parent_id)
         {
             List<employeeLevel> st = new List<employeeLevel>();
-            return st = ple.getEmployeeLevel(string.Format("SELECT * FROM employeeLevel t WHERE t.parent_id={0}  and shuxin='员工'", parent_id));
+            return st = ple.getEmployeeLevel(string.Format("SELECT * FROM employeeLevel t WHERE t.parent_id={0}  and shuxin='盟友'", parent_id));
         }
 
         /// <summary>
@@ -76,7 +86,7 @@ namespace BLL
         /// <param name="emp">实体</param>
         /// <returns>添加状态</returns>
         public int setEmployeeLeveLAdd(employeeLevel emp) {
-            string sql = string.Format(" INSERT  INTO `employeelevel`(`jobNumber`,`userName`,`parent_id`,`stock`,`level`,`identity`,`dateTime`,`shuxin`) " +
+            string sql = string.Format(" INSERT  INTO `employeeLevel`(`jobNumber`,`userName`,`parent_id`,`stock`,`level`,`identity`,`dateTime`,`shuxin`) " +
                 "VALUES  ('{0}','{1}',{2},'{3}',{4},'{5}',DEFAULT,'{6}')", emp.JobNumber, emp.UserName, emp.Parent_id, emp.Stock, emp.Level, emp.Identity,emp.Shuxin);
             return ple.GetExecuteNonQuery(sql);
         }
@@ -87,7 +97,7 @@ namespace BLL
         /// <param name="id">编号</param>
         /// <returns>删除状态</returns>
         public int setEmployeeLevelDelete(int id) {
-            return ple.GetExecuteNonQuery(string.Format("delete FROM employeelevel where id={0}", id));
+            return ple.GetExecuteNonQuery(string.Format("delete FROM employeeLevel where id={0}", id));
         }
 
         /// <summary>
@@ -96,7 +106,7 @@ namespace BLL
         /// <param name="emp">实体</param>
         /// <returns>修改状态</returns>
         public int setEmployeeLevelUpdate(employeeLevel emp) {
-            string sql = string.Format("update employeelevel set jobNumber='{0}',userName='{1}',parent_id={2},stock='{3}',level='{4}',identity='{5}',shuxin='{6}' where id={7}",
+            string sql = string.Format("update employeeLevel set jobNumber='{0}',userName='{1}',parent_id={2},stock='{3}',level='{4}',identity='{5}',shuxin='{6}' where id={7}",
                 emp.JobNumber,emp.UserName,emp.Parent_id,emp.Stock,emp.Level,emp.Identity,emp.Shuxin,emp.Id);
             return ple.GetExecuteNonQuery(sql);
         }
@@ -107,7 +117,7 @@ namespace BLL
         /// <param name="searchKey">搜索条件</param>
         /// <returns>结果</returns>
         public List<employeeLevel> getEmployeeLeveLikeSearch(string searchKey) {
-            string sql = string.Format(" SELECT * FROM employeeLevel t WHERE 1=1 AND t.userName LIKE '%{0}%' OR t.jobNumber LIKE '%{1}%' OR t.stock LIKE '%{2}%' OR t.identity LIKE '%{3}%' OR t.shuxin LIKE '%{4}%'", searchKey, searchKey, searchKey, searchKey,searchKey);
+            string sql = string.Format(" SELECT * FROM employeeLevel t WHERE 1=1 AND t.userName LIKE '%{0}%' OR t.jobNumber LIKE '%{1}%' OR t.stock LIKE '%{2}%' OR t.identity LIKE '%{3}%' OR t.shuxin LIKE '%{4}%'", searchKey, searchKey, searchKey, searchKey, searchKey);
             return ple.getEmployeeLevel(sql);
         }
 

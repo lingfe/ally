@@ -91,6 +91,9 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.导出到ExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -154,10 +157,12 @@
             this.编号,
             this.名称,
             this.工号,
+            this.columnHeader12,
+            this.columnHeader10,
+            this.columnHeader7,
             this.产品,
-            this.父级id,
             this.dateTime,
-            this.columnHeader7});
+            this.父级id});
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.FullRowSelect = true;
             this.listView1.Location = new System.Drawing.Point(244, 57);
@@ -187,11 +192,10 @@
             // 产品
             // 
             this.产品.Text = "产品";
-            this.产品.Width = 80;
             // 
             // 父级id
             // 
-            this.父级id.Text = "上级";
+            this.父级id.Text = "父级id";
             this.父级id.Width = 80;
             // 
             // dateTime
@@ -201,16 +205,17 @@
             // 
             // columnHeader7
             // 
-            this.columnHeader7.Text = "属性";
+            this.columnHeader7.Text = "商户";
             // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.刷新ToolStripMenuItem,
             this.toolStripTextBox1,
-            this.选为上级ToolStripMenuItem});
+            this.选为上级ToolStripMenuItem,
+            this.导出到ExcelToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(157, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(157, 114);
             // 
             // 刷新ToolStripMenuItem
             // 
@@ -594,6 +599,21 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "下级";
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "上级";
+            // 
+            // 导出到ExcelToolStripMenuItem
+            // 
+            this.导出到ExcelToolStripMenuItem.Name = "导出到ExcelToolStripMenuItem";
+            this.导出到ExcelToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.导出到ExcelToolStripMenuItem.Text = "导出到Excel";
+            this.导出到ExcelToolStripMenuItem.Click += new System.EventHandler(this.导出到ExcelToolStripMenuItem_Click);
+            // 
             // employeeLevelMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -712,6 +732,9 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ColumnHeader columnHeader12;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.ToolStripMenuItem 导出到ExcelToolStripMenuItem;
     }
 }
 

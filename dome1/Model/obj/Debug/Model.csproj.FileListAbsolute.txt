@@ -2,3 +2,7 @@ G:\dome1\Model\bin\Debug\Model.dll
 G:\dome1\Model\bin\Debug\Model.pdb
 G:\dome1\Model\obj\Debug\Model.dll
 G:\dome1\Model\obj\Debug\Model.pdb
+G:\ally\dome1\Model\bin\Debug\Model.dll
+G:\ally\dome1\Model\bin\Debug\Model.pdb
+G:\ally\dome1\Model\obj\Debug\Model.dll
+G:\ally\dome1\Model\obj\Debug\Model.pdb

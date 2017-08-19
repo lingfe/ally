@@ -5,3 +5,10 @@ G:\dome1\ADL\bin\Debug\Model.pdb
 G:\dome1\ADL\obj\Debug\ADL.csprojResolveAssemblyReference.cache
 G:\dome1\ADL\obj\Debug\ADL.dll
 G:\dome1\ADL\obj\Debug\ADL.pdb
+G:\ally\dome1\ADL\bin\Debug\ADL.dll
+G:\ally\dome1\ADL\bin\Debug\ADL.pdb
+G:\ally\dome1\ADL\bin\Debug\Model.dll
+G:\ally\dome1\ADL\bin\Debug\Model.pdb
+G:\ally\dome1\ADL\obj\Debug\ADL.csprojResolveAssemblyReference.cache
+G:\ally\dome1\ADL\obj\Debug\ADL.dll
+G:\ally\dome1\ADL\obj\Debug\ADL.pdb

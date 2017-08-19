@@ -7,3 +7,12 @@ G:\dome1\BLL\bin\Debug\Model.pdb
 G:\dome1\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
 G:\dome1\BLL\obj\Debug\BLL.dll
 G:\dome1\BLL\obj\Debug\BLL.pdb
+G:\ally\dome1\BLL\bin\Debug\BLL.dll
+G:\ally\dome1\BLL\bin\Debug\BLL.pdb
+G:\ally\dome1\BLL\bin\Debug\ADL.dll
+G:\ally\dome1\BLL\bin\Debug\Model.dll
+G:\ally\dome1\BLL\bin\Debug\ADL.pdb
+G:\ally\dome1\BLL\bin\Debug\Model.pdb
+G:\ally\dome1\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+G:\ally\dome1\BLL\obj\Debug\BLL.dll
+G:\ally\dome1\BLL\obj\Debug\BLL.pdb

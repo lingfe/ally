@@ -10,6 +10,18 @@ using System.Windows.Forms;
 //导入命名空间
 using BLL;
 using Model;
+using System.IO;
+using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
+using NPOI.HPSF;
+using Microsoft.CSharp;
+
+using System.Web;
+using NPOI;
+using NPOI.HSSF;
+using NPOI.POIFS;
+using NPOI.Util;
+using System.Collections;
 
 namespace dome1
 {
@@ -51,7 +63,7 @@ namespace dome1
         /// <param name="parent_id">父级id</param>
         /// <param name="count">行数</param>
         /// <param name="list">数据集合</param>
-        public void getParentCount(int parent_id, int count, List<employeeLevel> list)
+        public int getParentCount(int parent_id, int count, List<employeeLevel> list)
         {
             List<employeeLevel> parent1 = sql.getEmployeeLevelParent(parent_id);
             btn_Superior.Text = "上级(" + count + ")";
@@ -61,6 +73,7 @@ namespace dome1
                this.getParentCount(temp1.Parent_id,count,list);
 
             }
+            return count;
             
         }
 
@@ -91,10 +104,27 @@ namespace dome1
                 ListViewItem lv = new ListViewItem(temp.Id.ToString());
                 lv.SubItems.Add(temp.UserName);
                 lv.SubItems.Add(temp.JobNumber);
+
+
+
+                //统计上下级
+                //统计上级总数
+                int id = temp.Id;
+                int count = 0;
+                List<employeeLevel> parent1 = new List<employeeLevel>();
+                count=this.getParentCount(temp.Parent_id, count, parent1);
+                lv.SubItems.Add(count.ToString());
+
+                //根据id查询,统计下级总数
+                List<employeeLevel> Achildlist = sql.getEmployeeLevelAchild(id);
+                lv.SubItems.Add(Achildlist.Count.ToString());
+                //统计商户数量
+                List<employeeLevel> Merchantlist = sql.getEmployeeLevelMerchant(id);;
+                lv.SubItems.Add(Merchantlist.Count.ToString());
+
                 lv.SubItems.Add(temp.Stock + "");
-                lv.SubItems.Add(temp.Parent_id + "");
                 lv.SubItems.Add(temp.DateTime.ToString());
-                lv.SubItems.Add(temp.Shuxin);
+                lv.SubItems.Add(temp.Parent_id + "");
                 lv.Tag = temp;
 
                 listView1.Items.Add(lv);
@@ -177,27 +207,34 @@ namespace dome1
             //判断是否选中了
             if (listView1.SelectedItems.Count != 0)
             {
-                int num = Int32.Parse(listView1.SelectedItems[0].SubItems[0].Text);
+                int id = Int32.Parse(listView1.SelectedItems[0].SubItems[0].Text);
                 //id
-                lab_id.Text = num.ToString();
+                lab_id.Text = id.ToString();
                 //父id
-                lab_parent_id.Text = listView1.SelectedItems[0].SubItems[4].Text;
-                this.ListView_TreeView_click(num, "listView1");
-                //统计上下级
-                //统计上级总数
-                int count = 0;
-                List<employeeLevel> parent1 = new List<employeeLevel>();
-                this.getParentCount(Int32.Parse(listView1.SelectedItems[0].SubItems[4].Text), count, parent1);
+                lab_parent_id.Text = listView1.SelectedItems[0].SubItems[8].Text;
+                this.ListView_TreeView_click(id, "listView1");
 
-
-                //根据id查询,统计下级总数
-                List<employeeLevel> Achildlist = sql.getEmployeeLevelAchild(num);
-                btn_subordinate.Text = "下级(" + Achildlist.Count + ")";
-                //统计商户数量
-                List<employeeLevel> Merchantlist = sql.getEmployeeLevelMerchant(num);
-                btn_Merchant.Text = "商户(" + Merchantlist.Count + ")";
-
+                this.setIdGetNumber(id);
             } 
+        }
+        /// <summary>
+        /// 统计上下级,以及商户
+        /// </summary>
+        /// <param name="id">id</param>
+        public void setIdGetNumber(int id) {
+            
+            //统计上级总数
+            int count = 0;
+            List<employeeLevel> parent1 = new List<employeeLevel>();
+            this.getParentCount(Int32.Parse(listView1.SelectedItems[0].SubItems[8].Text), count, parent1);
+
+
+            //根据id查询,统计下级总数
+            List<employeeLevel> Achildlist = sql.getEmployeeLevelAchild(id);
+            btn_subordinate.Text = "下级(" + Achildlist.Count + ")";
+            //统计商户数量
+            List<employeeLevel> Merchantlist = sql.getEmployeeLevelMerchant(id);
+            btn_Merchant.Text = "商户(" + Merchantlist.Count + ")";
         }
 
         /// <summary>
@@ -222,6 +259,9 @@ namespace dome1
                     lv.SubItems.Add(temp.Shuxin);
                     lv.Tag = temp;
 
+                    lab_name.Text = temp.UserName;
+                    lab_jobNumber.Text = temp.JobNumber;
+                    lab_stock.Text = "产品(" + temp.Stock + ")";
                     listView3.Items.Add(lv);
                 }
             }
@@ -259,8 +299,6 @@ namespace dome1
             txt_stock.Text = "";
             cob_parent_id.Text = "";
 
-            lab_id.Text = "";
-            lab_parent_id.Text = "";
         }
 
         /// <summary>
@@ -382,7 +420,7 @@ namespace dome1
                 if (tt == 1)
                 {
                     //调用函数,加载，刷新
-                    this.dataNode();
+                   // this.dataNode();
                     MessageBox.Show("修改成功！");
                 }
                 else
@@ -436,7 +474,7 @@ namespace dome1
             if (tt == 1)
             {
                 //调用函数,加载，刷新
-                this.dataNode();
+                //this.dataNode();
 
                 employeeLevelLog empLog = new employeeLevelLog();
                 List<employeeLevel> st= sql.getEmployeeLevelParent(emp.Parent_id);
@@ -762,6 +800,268 @@ namespace dome1
                 //MessageBox.Show(de.Text, "选中了");
                 return;
             }
+        }
+
+        /// <summary>
+        /// 导出员工到Excel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void 导出到ExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            using (MemoryStream ms = this.Export(sql.getEmployeeLevelDataTable(), "员工信息"))
+            {
+                string saveFileName = "";                    //保存路径
+                //bool fileSaved = false;
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.DefaultExt = "xls";              //默认文件类型
+                saveDialog.Filter = "Excel文件|*.xls";       //可选择的文件类型
+                saveDialog.FileName = "test";               //默认的文件名
+                saveDialog.ShowDialog();                    //打开文件窗口
+                saveFileName = saveDialog.FileName;
+
+                if (saveFileName.IndexOf(":") < 0) return; //被点了取消 
+                //Microsoft.Office.Interop.Excel.Application xlApp;
+
+               //保存
+                SaveToFile(ms, saveFileName);
+          
+                
+            }
+            
+        }
+
+        /// <summary>
+        /// 保存Excel文档流到文件
+        ///
+        /// Excel文档流
+        /// 文件名
+        /// </summary>
+        /// <param name="ms"></param>
+        /// <param name="fileName"></param>
+        private static void SaveToFile(MemoryStream ms, string fileName)
+        {
+            try
+            {
+                using (FileStream fs = new FileStream(fileName, FileMode.Create, FileAccess.Write))
+                {
+                    byte[] data = ms.ToArray();
+                    fs.Write(data, 0, data.Length);
+                    fs.Flush();
+                    data = null;
+                }
+
+                MessageBox.Show("导出Excel成功！位置："+fileName);
+            }
+            catch (Exception e) {
+                MessageBox.Show(e.Message);
+            }
+
+        }
+
+        /// <summary>
+        /// DataTable导出到Excel的MemoryStream Export()
+        /// </summary>
+        /// <param name="dtSource">DataTable数据源</param>
+        /// <param name="strHeaderText">Excel表头文本（例如：车辆列表）</param>
+        public  MemoryStream Export(DataTable dtSource, string strHeaderText)
+        {
+            HSSFWorkbook workbook = new HSSFWorkbook();
+            ISheet sheet = workbook.CreateSheet();
+
+            #region 右击文件 属性信息
+            {
+                DocumentSummaryInformation dsi = PropertySetFactory.CreateDocumentSummaryInformation();
+                dsi.Company = "NPOI";
+                workbook.DocumentSummaryInformation = dsi;
+
+                SummaryInformation si = PropertySetFactory.CreateSummaryInformation();
+                si.Author = "文件作者信息";               //填加xls文件作者信息
+                si.ApplicationName = "创建程序信息";      //填加xls文件创建程序信息
+                si.LastAuthor = "最后保存者信息";          //填加xls文件最后保存者信息
+                si.Comments = "作者信息";                   //填加xls文件作者信息
+                si.Title = "标题信息";                  //填加xls文件标题信息
+                si.Subject = "主题信息";                //填加文件主题信息
+                si.CreateDateTime = System.DateTime.Now;
+                workbook.SummaryInformation = si;
+            }
+            #endregion
+
+            ICellStyle dateStyle = workbook.CreateCellStyle();
+            IDataFormat format = workbook.CreateDataFormat();
+            dateStyle.DataFormat = format.GetFormat("yyyy-mm-dd");
+
+            //取得列宽
+            int[] arrColWidth = new int[dtSource.Columns.Count];
+            foreach (DataColumn item in dtSource.Columns)
+            {
+                arrColWidth[item.Ordinal] = Encoding.GetEncoding(936).GetBytes(item.ColumnName.ToString()).Length;
+            }
+            for (int i = 0; i < dtSource.Rows.Count; i++)
+            {
+                for (int j = 0; j < dtSource.Columns.Count; j++)
+                {
+                    int intTemp = Encoding.GetEncoding(936).GetBytes(dtSource.Rows[i][j].ToString()).Length;
+                    if (intTemp > arrColWidth[j])
+                    {
+                        arrColWidth[j] = intTemp;
+                    }
+                }
+            }
+            int rowIndex = 0;
+            foreach (DataRow row in dtSource.Rows)
+            {
+                #region 新建表，填充表头，填充列头，样式
+                if (rowIndex == 65535 || rowIndex == 0)
+                {
+                    if (rowIndex != 0)
+                    {
+                        sheet = workbook.CreateSheet();
+                    }
+
+                    #region 表头及样式
+                    {
+                        IRow headerRow = sheet.CreateRow(0);
+                        headerRow.HeightInPoints = 25;
+                        headerRow.CreateCell(0).SetCellValue(strHeaderText);
+
+                        ICellStyle headStyle = workbook.CreateCellStyle();
+                        headStyle.Alignment = NPOI.SS.UserModel.HorizontalAlignment.CENTER;
+                        IFont font = workbook.CreateFont();
+                        font.FontHeightInPoints = 20;
+                        font.Boldweight = 700;
+                        headStyle.SetFont(font);
+                        headerRow.GetCell(0).CellStyle = headStyle;
+                        sheet.AddMergedRegion(new NPOI.SS.Util.CellRangeAddress(0, 0, 0, dtSource.Columns.Count - 1));
+                    }
+                    #endregion
+
+                    #region 列头及样式
+                    {
+                        IRow headerRow = sheet.CreateRow(1);
+                        ICellStyle headStyle = workbook.CreateCellStyle();
+                        headStyle.Alignment = NPOI.SS.UserModel.HorizontalAlignment.CENTER;
+                        IFont font = workbook.CreateFont();
+                        font.FontHeightInPoints = 10;
+                        font.Boldweight = 700;
+                        headStyle.SetFont(font);
+                        foreach (DataColumn column in dtSource.Columns)
+                        {
+                            headerRow.CreateCell(column.Ordinal).SetCellValue(column.ColumnName);
+                            headerRow.GetCell(column.Ordinal).CellStyle = headStyle;
+
+                            //设置列宽
+                            sheet.SetColumnWidth(column.Ordinal, (arrColWidth[column.Ordinal] + 1) * 256);
+                        }
+                    }
+                    #endregion
+
+                    rowIndex = 2;
+                }
+                #endregion
+
+                #region 填充内容
+                IRow dataRow = sheet.CreateRow(rowIndex);
+                foreach (DataColumn column in dtSource.Columns)
+                {
+                    ICell newCell = dataRow.CreateCell(column.Ordinal);
+
+                    string drValue = row[column].ToString();
+
+                    switch (column.DataType.ToString())
+                    {
+                        case "System.String"://字符串类型
+                            newCell.SetCellValue(drValue);
+                            break;
+                        case "System.DateTime"://日期类型
+                            System.DateTime dateV;
+                            System.DateTime.TryParse(drValue, out dateV);
+                            newCell.SetCellValue(dateV);
+
+                            newCell.CellStyle = dateStyle;//格式化显示
+                            break;
+                        case "System.Boolean"://布尔型
+                            bool boolV = false;
+                            bool.TryParse(drValue, out boolV);
+                            newCell.SetCellValue(boolV);
+                            break;
+                        case "System.Int16"://整型
+                        case "System.Int32":
+                        case "System.Int64":
+                        case "System.Byte":
+                            int intV = 0;
+                            int.TryParse(drValue, out intV);
+                            newCell.SetCellValue(intV);
+                            break;
+                        case "System.Decimal"://浮点型
+                        case "System.Double":
+                            double doubV = 0;
+                            double.TryParse(drValue, out doubV);
+                            newCell.SetCellValue(doubV);
+                            break;
+                        case "System.DBNull"://空值处理
+                            newCell.SetCellValue("");
+                            break;
+                        default:
+                            newCell.SetCellValue("");
+                            break;
+                    }
+                }
+                #endregion
+
+                rowIndex++;
+            }
+            using (MemoryStream ms = new MemoryStream())
+            {
+                workbook.Write(ms);
+                ms.Flush();
+                ms.Position = 0;
+                sheet.Dispose();
+                return ms;
+            }
+        }
+
+        /// <summary>
+        /// 读取excel ,默认第一行为标头
+        /// </summary>
+        /// <param name="strFileName">excel文档路径</param>
+        /// <returns></returns>
+        public static DataTable Import(string strFileName)
+        {
+            DataTable dt = new DataTable();
+
+            HSSFWorkbook hssfworkbook;
+            using (FileStream file = new FileStream(strFileName, FileMode.Open, FileAccess.Read))
+            {
+                hssfworkbook = new HSSFWorkbook(file);
+            }
+            ISheet sheet = hssfworkbook.GetSheetAt(0);
+            System.Collections.IEnumerator rows = sheet.GetRowEnumerator();
+
+            IRow headerRow = sheet.GetRow(0);
+            int cellCount = headerRow.LastCellNum;
+
+            for (int j = 0; j < cellCount; j++)
+            {
+                ICell cell = headerRow.GetCell(j);
+                dt.Columns.Add(cell.ToString());
+            }
+
+            for (int i = (sheet.FirstRowNum + 1); i <= sheet.LastRowNum; i++)
+            {
+                IRow row = sheet.GetRow(i);
+                DataRow dataRow = dt.NewRow();
+
+                for (int j = row.FirstCellNum; j < cellCount; j++)
+                {
+                    if (row.GetCell(j) != null)
+                        dataRow[j] = row.GetCell(j).ToString();
+                }
+
+                dt.Rows.Add(dataRow);
+            }
+            return dt;
         }
     }
 }

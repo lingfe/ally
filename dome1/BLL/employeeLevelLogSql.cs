@@ -27,10 +27,10 @@ namespace BLL
             List<employeeLevelLog> st = new List<employeeLevelLog>();
             if (datetime == null || datetime.ToString() == "" || datetime.ToString().Length == 0)
             {
-                return st = ple.getEmployeeLevelLog(string.Format("SELECT * FROM employeeLevelLog WHERE DATEDIFF(DATETIME,NOW())=0 ORDER BY id DESC"));
+                return st = ple.getEmployeeLevelLog(string.Format("SELECT * FROM employeelevelLog WHERE DATEDIFF(DATETIME,NOW())=0 ORDER BY id DESC"));
             }
             else {
-                return st = ple.getEmployeeLevelLog(string.Format("SELECT * FROM employeeLevelLog WHERE DATEDIFF(DATETIME,'{0}')=0 ORDER BY id DESC", datetime.ToString()));
+                return st = ple.getEmployeeLevelLog(string.Format("SELECT * FROM employeelevelLog WHERE DATEDIFF(DATETIME,'{0}')=0 ORDER BY id DESC", datetime.ToString()));
             }
             
         }
@@ -42,7 +42,7 @@ namespace BLL
         /// <returns>添加状态</returns>
         public int setEmployeeLevelLogAdd(employeeLevelLog empLog)
         {
-            string sql = string.Format("INSERT  INTO `employeelevellog`(`jobNumber`,`userName`,`dateTime`,`addMerchant`,`addSubordinate`,`stock`) "+
+            string sql = string.Format("INSERT  INTO `employeelevelLog`(`jobNumber`,`userName`,`dateTime`,`addMerchant`,`addSubordinate`,`stock`) " +
             "VALUES ('{0}','{1}',DEFAULT,DEFAULT,DEFAULT,'{2}')", empLog.JobNumber, empLog.UserName,empLog.Stock);
             return ple.GetExecuteNonQuery(sql);
         }

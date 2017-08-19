@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<!-- Select a Product Configuration -->
+		<InstallShieldProductConfiguration>Express</InstallShieldProductConfiguration>
+		<!-- Select a Visual Studio Configuration / InstallShield Release -->
+		<Configuration>Debug</Configuration>
+		<InstallShieldRelease>$(Configuration)</InstallShieldRelease>
+	</PropertyGroup>
+	<ItemGroup>
+		<!-- The InstallShieldProject item selects the project to build -->
+		<InstallShieldProject Include="$(MSBuildProjectDirectory)\$(MSBuildProjectName).isl"/>
+		<!-- The InstallShieldReleaseFlags sets Release Flags -->
+		<!--<InstallShieldReleaseFlags Include=""/>-->
+		<!-- The InstallShieldMergeModulePath specifies what directories are
+		searched for Merge Modules -->
+		<!--<InstallShieldMergeModulePath Include=""/>-->
+	</ItemGroup>
+	<ItemGroup>
+		<!-- The ProjectReference items refer to any Visual Studio solutions you want to automatically probe for Project Output Groups.  -->
+	</ItemGroup>
+	<ItemGroup>
+		<!-- The TaggedOutputs items allow you to explicitly add extra files to output groups. Each item must include both Name and OutputGroup, as well as TargetPath metadata values. -->
+		<!--<TaggedOutputs Include="C:\My Test Exe.exe">
+			<Name>My Test Project</Name>
+			<OutputGroup>Primary output</OutputGroup>
+			<TargetPath>My Test Exe.exe</TargetPath>
+		</TaggedOutputs> -->
+	</ItemGroup>
+	<Import Project="$(MSBuildExtensionsPath32)\InstallShield\2015Limited\InstallShield.targets"/>
+	<ItemGroup>
+		<ProjectReference Include="..\ADL\ADL.csproj">
+			<Name>ADL</Name>
+			<Project>{F020D9A0-D505-4752-97A5-48FEE0477052}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\BLL\BLL.csproj">
+			<Name>BLL</Name>
+			<Project>{23D4C830-CB78-49F9-9A41-8FD57F786A87}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\Model\Model.csproj">
+			<Name>Model</Name>
+			<Project>{75C04C22-EA17-41E4-BBF4-E2A8C643C216}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\dome1\dome1.csproj">
+			<Name>dome1</Name>
+			<Project>{56A3AC5E-8AB9-4EA2-8E72-8515E348ECD6}</Project>
+		</ProjectReference>
+	</ItemGroup>
+</Project>

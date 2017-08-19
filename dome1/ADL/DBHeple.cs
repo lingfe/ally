@@ -14,6 +14,11 @@ namespace ADL
     /// </summary>
     public class DBHeple
     {
+
+        public DBHeple() {
+            con.Open();
+        
+        }
         #region  建立Sql server 数据库连接
         //SqlConnection con = new SqlConnection("server=.;database=dome1;uid=root;pwd=root;");
         //SqlCommand cmd;
@@ -22,12 +27,15 @@ namespace ADL
 
         #region  建立MySql数据库连接
         /// <summary>
-        /// 服务器：ip=119.23.59.68; port=330;
+        /// 服务器1：ip=119.23.59.68; port=330;
+        /// 服务器2：ip=39.108.118.48;port=3306;
         /// 本地  : ip=192.168.1.104;port=3306;
         /// </summary>
-        MySqlConnection con = new MySqlConnection("server=119.23.59.68;port=330;user id=root;password=root;database=ally"); //根据自己的设置http://sosoft.cnblogs.com/
+        MySqlConnection con = new MySqlConnection("server=39.108.118.48;port=3306;user id=dahuo;CharSet=utf8;password=dahuo;database=ally"); //根据自己的设置http://sosoft.cnblogs.com/
+        
         MySqlCommand cmd;
         MySqlDataReader dr;
+        MySqlDataAdapter da;
         #endregion
 
         /// <summary>
@@ -40,21 +48,56 @@ namespace ADL
             int tt = -1;
             try
             {
-                con.Open();
+                
                 cmd = new MySqlCommand(sql, con);
                 tt = cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
                 Console.WriteLine(ex.Message);
             }
             finally
             {
-                con.Close();
+               // con.Close();
             }
             return tt;
         }
 
+        /// <summary>
+        /// 得到dataTable数据
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        public DataTable getEmployeeLevelDataTable(string sql)
+        {
+            DataTable ds = null;
+            try
+            {
+                da = new MySqlDataAdapter(sql, con);
+                ds = new DataTable();
+                da.Fill(ds);
+
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+                Console.WriteLine(ex.Message);
+
+            }
+            finally
+            {
+                //con.Close();
+            }
+            return ds;
+        }
 
         /// <summary>
         /// 定义查询所有员工等级的方法
@@ -67,7 +110,7 @@ namespace ADL
 
             try
             {
-                con.Open();
+                //con.Open();
                 cmd = new MySqlCommand(sql, con);
                 dr = cmd.ExecuteReader();
                 while (dr.Read())
@@ -89,12 +132,15 @@ namespace ADL
             }
             catch (Exception ex)
             {
+                if (con.State == ConnectionState.Closed) {
+                    con.Open();
+                }
                 Console.WriteLine(ex.Message);
 
             }
             finally
             {
-                con.Close();
+                //con.Close();
             }
 
             return st;
@@ -111,7 +157,7 @@ namespace ADL
 
             try
             {
-                con.Open();
+                //con.Open();
                 cmd = new MySqlCommand(sql, con);
                 dr = cmd.ExecuteReader();
                 while (dr.Read())
@@ -131,12 +177,16 @@ namespace ADL
             }
             catch (Exception ex)
             {
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
                 Console.WriteLine(ex.Message);
 
             }
             finally
             {
-                con.Close();
+                //con.Close();
             }
 
             return st;
@@ -151,7 +201,7 @@ namespace ADL
             List<admin> st = new List<admin>();
             try
             {   
-                con.Open();
+                //con.Open();
                 cmd = new MySqlCommand(sql, con);
                 dr = cmd.ExecuteReader();
                 while (dr.Read()) {
@@ -168,10 +218,14 @@ namespace ADL
             }
             catch (Exception ex)
             {
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
                 Console.WriteLine(ex);
             }
             finally {
-                con.Clone();
+                //con.Clone();
             }
             return st;
         }
