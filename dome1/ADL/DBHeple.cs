@@ -31,12 +31,20 @@ namespace ADL
         /// 服务器2：ip=39.108.118.48;port=3306;
         /// 本地  : ip=192.168.1.104;port=3306;
         /// </summary>
-        MySqlConnection con = new MySqlConnection("server=39.108.118.48;port=3306;user id=dahuo;CharSet=utf8;password=dahuo;database=ally"); //根据自己的设置http://sosoft.cnblogs.com/
+        // MySqlConnection con = new MySqlConnection("server=39.108.118.48;port=3306;user id=dahuo;CharSet=utf8;password=dahuo;database=ally"); //根据自己的设置http://sosoft.cnblogs.com/
+        MySqlConnection con = new MySqlConnection("server=119.23.59.68;port=330;user id=root;CharSet=utf8;password=root;database=ally"); //根据自己的设置http://sosoft.cnblogs.com/
         
         MySqlCommand cmd;
         MySqlDataReader dr;
         MySqlDataAdapter da;
         #endregion
+
+        /// <summary>
+        /// 关闭数据库连接
+        /// </summary>
+        public void close() {
+            con.Close();
+        }
 
         /// <summary>
         /// 返回影响的行数的方法
@@ -118,13 +126,14 @@ namespace ADL
                     employeeLevel fo = new employeeLevel();
                     fo.Id = Convert.ToInt32(dr["id"]);
                     fo.UserName = dr["userName"].ToString();
-                    fo.Identity = dr["identity"].ToString();
                     fo.JobNumber = dr["jobNumber"].ToString();
-                    fo.Level = Convert.ToInt32(dr["level"]);
                     fo.Parent_id = Convert.ToInt32(dr["parent_id"]);
                     fo.Stock = dr["stock"].ToString();
                     fo.DateTime = DateTime.Parse(dr["dateTime"].ToString());
                     fo.Shuxin = dr["shuxin"].ToString();
+                    fo.SuperiorNumber = dr["superiorNumber"].ToString();
+                    fo.SubordinateNumber = dr["subordinateNumber"].ToString();
+                    fo.MerchantNumber = dr["merchantNumber"].ToString();
 
                     st.Add(fo);
                 }

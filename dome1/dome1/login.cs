@@ -49,6 +49,8 @@ namespace dome1
                 PublicField.userName = st[0].UserName;
                 employeeLevelMain main = new employeeLevelMain();
                 main.Show();
+
+                sql.close();
                 this.Visible = false;
             }
             else {
@@ -65,6 +67,7 @@ namespace dome1
         private void btn_close_Click(object sender, EventArgs e)
         {
             this.Close();
+            sql.close();
             Application.Exit();
         }
     }

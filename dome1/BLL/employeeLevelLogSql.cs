@@ -19,6 +19,14 @@ namespace BLL
         DBHeple ple = new DBHeple();
 
         /// <summary>
+        /// 关闭数据库连接
+        /// </summary>
+        public void close()
+        {
+            ple.close();
+        }
+
+        /// <summary>
         /// 返回所有操作日志结果
         /// </summary>
         /// <returns>结果</returns>

@@ -12,6 +12,7 @@ namespace Model
     public class employeeLevel
     {
 
+
         private DateTime dateTime;//  `dateTime` DATETIME DEFAULT NOW()  COMMENT '录入时间',
         /// <summary>
         /// 录入时间
@@ -108,6 +109,38 @@ namespace Model
         {
             get { return shuxin; }
             set { shuxin = value; }
+        }
+
+
+        private string superiorNumber;//上级数量
+        /// <summary>
+        /// 上级数量
+        /// </summary>
+        public string SuperiorNumber
+        {
+            get { return superiorNumber; }
+            set { superiorNumber = value; }
+        }
+
+
+        private string subordinateNumber;//下级梳理
+        /// <summary>
+        /// 下级梳理
+        /// </summary>
+        public string SubordinateNumber
+        {
+            get { return subordinateNumber; }
+            set { subordinateNumber = value; }
+        }
+
+        private string merchantNumber;//商户数量
+        /// <summary>
+        /// 商户数量
+        /// </summary>
+        public string MerchantNumber
+        {
+            get { return merchantNumber; }
+            set { merchantNumber = value; }
         }
     }
 }

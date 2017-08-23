@@ -49,11 +49,19 @@ namespace dome1
         /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
+            
+            //默认
+            cob_parent_id.Items.Add("0.一级");
+            cob_parent_id.SelectedIndex = 0;
+            cob_shuxin.SelectedIndex = 0;
+
+            listView1.Focus();
             //调用函数,加载，刷新
-            this.dataNode();
-            toolStripStatusLabel1.Text += PublicField.userName;
+            this.dataNode("");
             //加载日志
             this.getLog("");
+            //管理员
+            toolStripStatusLabel1.Text += PublicField.userName;
         }
 
 
@@ -66,7 +74,6 @@ namespace dome1
         public int getParentCount(int parent_id, int count, List<employeeLevel> list)
         {
             List<employeeLevel> parent1 = sql.getEmployeeLevelParent(parent_id);
-            btn_Superior.Text = "上级(" + count + ")";
             foreach (employeeLevel temp1 in parent1) {
                count++;
                list.Add(temp1);
@@ -74,69 +81,76 @@ namespace dome1
 
             }
             return count;
-            
         }
 
+        /// <summary>
+        /// 递归，得到父级数量2
+        /// </summary>
+        /// <param name="parent_id">父级id</param>
+        /// <param name="count">行数</param>
+        /// <param name="list">数据集合</param>
+        public void getParentCount2(employeeLevel emp)
+        {
+            List<employeeLevel> parent1 = sql.getEmployeeLevelParent(emp.Parent_id);
+            //parent1.Add(emp);
 
+            foreach (employeeLevel temp1 in parent1)
+            {
+                //根据id查询,统计下级总数
+                temp1.SubordinateNumber = sql.getEmployeeLevelAchild(temp1.Id).Count.ToString();
+                //统计商户数量
+                temp1.MerchantNumber = sql.getEmployeeLevelMerchant(temp1.Id).Count.ToString();
+
+                //统计上级总数
+                int count = 0;
+                List<employeeLevel> ttst = new List<employeeLevel>();
+                this.getParentCount(temp1.Parent_id, count, ttst);
+                temp1.SuperiorNumber = ttst.Count.ToString();
+
+                //执行修改
+                int ss = sql.setEmployeeLevelUpdate(temp1);
+
+                this.getParentCount2(temp1);
+            }
+
+        }
+       
         /// <summary>
         /// 遍历根节点数组,窗体加载,初始化,刷新
         /// </summary>
-        public void dataNode()
+        public void dataNode(string dateTime)
         {
             //得到所有员工等级信息
-            List<employeeLevel> list = sql.getEmployeeLevel();
+            List<employeeLevel> list = sql.getEmployeeLevel(dateTime);
             List<employeeLevel> childEmployeelevel = new List<employeeLevel>();
             //清空现有数据
             treeView1.Nodes.Clear();
             listView1.Items.Clear();
-            cob_parent_id.Items.Clear();
 
             //树数据
-            List<employeeLevel> st = sql.getEmployeeLevel();
+            List<employeeLevel> st = sql.getEmployeeLevel(null);
             TreeNode root = new TreeNode();
             root.Text = "所有员工";
             root.Tag = 0;
 
-            cob_parent_id.Items.Add("0.一级");
             //循环遍历
             foreach (employeeLevel temp in list)
             {
                 ListViewItem lv = new ListViewItem(temp.Id.ToString());
-                lv.SubItems.Add(temp.UserName);
-                lv.SubItems.Add(temp.JobNumber);
-
-
-
-                //统计上下级
-                //统计上级总数
-                int id = temp.Id;
-                int count = 0;
-                List<employeeLevel> parent1 = new List<employeeLevel>();
-                count=this.getParentCount(temp.Parent_id, count, parent1);
-                lv.SubItems.Add(count.ToString());
-
-                //根据id查询,统计下级总数
-                List<employeeLevel> Achildlist = sql.getEmployeeLevelAchild(id);
-                lv.SubItems.Add(Achildlist.Count.ToString());
-                //统计商户数量
-                List<employeeLevel> Merchantlist = sql.getEmployeeLevelMerchant(id);;
-                lv.SubItems.Add(Merchantlist.Count.ToString());
-
-                lv.SubItems.Add(temp.Stock + "");
-                lv.SubItems.Add(temp.DateTime.ToString());
-                lv.SubItems.Add(temp.Parent_id + "");
+                lv.SubItems.Add(temp.UserName);                     //名称
+                lv.SubItems.Add(temp.JobNumber);                    //工号
+                lv.SubItems.Add(temp.SuperiorNumber);               //上级数量
+                lv.SubItems.Add(temp.SubordinateNumber);            //下级数量
+                lv.SubItems.Add(temp.MerchantNumber);               //商户数量
+                lv.SubItems.Add(temp.Stock + "");                   //产品
+                lv.SubItems.Add(temp.DateTime.ToString());          //录入时间
+                lv.SubItems.Add(temp.Parent_id + "");               //父id
                 lv.Tag = temp;
 
                 listView1.Items.Add(lv);
-                
-
             }
-            //默认
-            cob_parent_id.SelectedIndex = 0;
-            cob_shuxin.SelectedIndex = 0;
-            
 
-            //遍历
+            //遍历集合
             foreach (employeeLevel temp in st)
             {
                 foreach (employeeLevel temp1 in st)
@@ -159,7 +173,6 @@ namespace dome1
             foreach (employeeLevel temp in childEmployeelevel)
             {
                 st.Remove(temp);
-
             }
             
             //得到树
@@ -168,20 +181,20 @@ namespace dome1
                 TreeNode no = new TreeNode();
                 no.Text = temp1.UserName;
                 root.Nodes.Add(no);
-                this.node(temp1, no);
+                this.getNode(temp1, no);
             }
+
+            //添加到树
             treeView1.Nodes.Add(root);
             treeView1.ExpandAll();
-            listView1.Focus();
         }
-        
-        
+
         /// <summary>
         /// 递归,得到员工树
         /// </summary>
         /// <param name="temp">当前节点name</param>
         /// <param name="root">树</param>
-        public void node(employeeLevel temp, TreeNode root)
+        public void getNode(employeeLevel temp, TreeNode root)
         {
             //循环遍历
             if (temp.ChildEmployeeLevel != null)
@@ -191,14 +204,14 @@ namespace dome1
                     TreeNode node2 = new TreeNode();
                     node2.Text = temp1.UserName;
                     root.Nodes.Add(node2);
-                    this.node(temp1, node2);
+                    this.getNode(temp1, node2);
                 }
             }
-            
+
         }
 
         /// <summary>
-        /// ListView的单机事件
+        /// ListView1的单机事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -212,29 +225,16 @@ namespace dome1
                 lab_id.Text = id.ToString();
                 //父id
                 lab_parent_id.Text = listView1.SelectedItems[0].SubItems[8].Text;
+                //上级数量
+                btn_Superior.Text = "上级(" + listView1.SelectedItems[0].SubItems[3].Text + ")";
+                //下级数量
+                btn_subordinate.Text = "下级(" + listView1.SelectedItems[0].SubItems[4].Text + ")";
+                //商户梳理
+                btn_Merchant.Text = "商户(" + listView1.SelectedItems[0].SubItems[5].Text + ")";
+
+                //遍历数据
                 this.ListView_TreeView_click(id, "listView1");
-
-                this.setIdGetNumber(id);
             } 
-        }
-        /// <summary>
-        /// 统计上下级,以及商户
-        /// </summary>
-        /// <param name="id">id</param>
-        public void setIdGetNumber(int id) {
-            
-            //统计上级总数
-            int count = 0;
-            List<employeeLevel> parent1 = new List<employeeLevel>();
-            this.getParentCount(Int32.Parse(listView1.SelectedItems[0].SubItems[8].Text), count, parent1);
-
-
-            //根据id查询,统计下级总数
-            List<employeeLevel> Achildlist = sql.getEmployeeLevelAchild(id);
-            btn_subordinate.Text = "下级(" + Achildlist.Count + ")";
-            //统计商户数量
-            List<employeeLevel> Merchantlist = sql.getEmployeeLevelMerchant(id);
-            btn_Merchant.Text = "商户(" + Merchantlist.Count + ")";
         }
 
         /// <summary>
@@ -251,17 +251,16 @@ namespace dome1
                 foreach (employeeLevel temp in st)
                 {
                     ListViewItem lv = new ListViewItem(temp.Id.ToString());
-                    lv.SubItems.Add(temp.UserName);
-                    lv.SubItems.Add(temp.JobNumber);
-                    lv.SubItems.Add(temp.Stock + "");
-                    lv.SubItems.Add(temp.Parent_id + "");
-                    lv.SubItems.Add(temp.DateTime.ToString());
-                    lv.SubItems.Add(temp.Shuxin);
+                    lv.SubItems.Add(temp.UserName);                     //名称
+                    lv.SubItems.Add(temp.JobNumber);                    //工号
+                    lv.SubItems.Add(temp.SuperiorNumber);               //上级数量
+                    lv.SubItems.Add(temp.SubordinateNumber);            //下级数量
+                    lv.SubItems.Add(temp.MerchantNumber);               //商户数量
+                    lv.SubItems.Add(temp.Stock + "");                   //产品
+                    lv.SubItems.Add(temp.DateTime.ToString());          //录入时间
+                    lv.SubItems.Add(temp.Parent_id + "");               //父id
                     lv.Tag = temp;
 
-                    lab_name.Text = temp.UserName;
-                    lab_jobNumber.Text = temp.JobNumber;
-                    lab_stock.Text = "产品(" + temp.Stock + ")";
                     listView3.Items.Add(lv);
                 }
             }
@@ -325,14 +324,16 @@ namespace dome1
                 foreach (employeeLevel temp in parent1)
                 {
                     ListViewItem lv = new ListViewItem(temp.Id.ToString());
-                    lv.SubItems.Add(temp.UserName);
-                    lv.SubItems.Add(temp.JobNumber);
-                    lv.SubItems.Add(temp.Stock + "");
-                    lv.SubItems.Add(temp.Parent_id + "");
-                    lv.SubItems.Add(temp.DateTime.ToString());
+                    lv.SubItems.Add(temp.UserName);                     //名称
+                    lv.SubItems.Add(temp.JobNumber);                    //工号
+                    lv.SubItems.Add(temp.SuperiorNumber);               //上级数量
+                    lv.SubItems.Add(temp.SubordinateNumber);            //下级数量
+                    lv.SubItems.Add(temp.MerchantNumber);               //商户数量
+                    lv.SubItems.Add(temp.Stock + "");                   //产品
+                    lv.SubItems.Add(temp.DateTime.ToString());          //录入时间
+                    lv.SubItems.Add(temp.Parent_id + "");               //父id
                     lv.Tag = temp;
 
-                    //添加到listView3
                     listView3.Items.Add(lv);
 
                }
@@ -361,11 +362,14 @@ namespace dome1
                 foreach (employeeLevel temp in st)
                 {
                     ListViewItem lv = new ListViewItem(temp.Id.ToString());
-                    lv.SubItems.Add(temp.UserName);
-                    lv.SubItems.Add(temp.JobNumber);
-                    lv.SubItems.Add(temp.Stock + "");
-                    lv.SubItems.Add(temp.Parent_id + "");
-                    lv.SubItems.Add(temp.DateTime.ToString());
+                    lv.SubItems.Add(temp.UserName);                     //名称
+                    lv.SubItems.Add(temp.JobNumber);                    //工号
+                    lv.SubItems.Add(temp.SuperiorNumber);               //上级数量
+                    lv.SubItems.Add(temp.SubordinateNumber);            //下级数量
+                    lv.SubItems.Add(temp.MerchantNumber);               //商户数量
+                    lv.SubItems.Add(temp.Stock + "");                   //产品
+                    lv.SubItems.Add(temp.DateTime.ToString());          //录入时间
+                    lv.SubItems.Add(temp.Parent_id + "");               //父id
                     lv.Tag = temp;
 
                     listView3.Items.Add(lv);
@@ -388,39 +392,16 @@ namespace dome1
             {
                 //定义实体变量
                 employeeLevel emp = new employeeLevel();
-                //得到数据
-                emp.Id = Int32.Parse(lab_id.Text);
-                emp.UserName = txt_userName.Text;
-                if ("".Equals(emp.UserName)||emp.UserName == null) {
-                    MessageBox.Show("请填写名称！"); return;
-                }
-                emp.Stock = txt_stock.Text;
-                if ("".Equals(emp.Stock) || emp.Stock == null) {
-                    MessageBox.Show("请填写产品库存！"); return;
-                }
-                emp.JobNumber = txt_jobNumber.Text;
-                if ("".Equals(emp.JobNumber) || emp.JobNumber == null)
-                {
-                    MessageBox.Show("工号不能为空！"); return;
-                }
-                //父id
-                emp.Parent_id = Int32.Parse(cob_parent_id.Text.Split('.')[0].ToString());
-                if (emp.Id == emp.Parent_id) {
-                    MessageBox.Show("不能选择自己作为父级！"); return;
-                }
-                emp.Shuxin = cob_shuxin.Text;
-                List<employeeLevel> getJobNumberList = sql.getJobNumberList(emp.JobNumber);
-                if (getJobNumberList.Count >= 1)
-                {
-                    MessageBox.Show("工号重复了！", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                    return;
-                }
+                //验证后得到数据,
+                if (this.vadata(emp) == null) return;
                 //调用Update
                 int tt = sql.setEmployeeLevelUpdate(emp);
                 if (tt == 1)
                 {
+                    //统计
+                    this.statistics(emp);
                     //调用函数,加载，刷新
-                   // this.dataNode();
+                    this.dataNode("");
                     MessageBox.Show("修改成功！");
                 }
                 else
@@ -433,31 +414,29 @@ namespace dome1
             }
 
         }
-        
+
         /// <summary>
-        /// 添加员工
+        /// 基础验证
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button3_Click(object sender, EventArgs e)
+        /// <param name="emp"></param>
+        public employeeLevel vadata(employeeLevel emp)
         {
-            //定义实体变量
-            employeeLevel emp = new employeeLevel();
-            //得到数据
+            emp.Id = lab_id.Text!=""? Int32.Parse(lab_id.Text):0;
+            emp.Parent_id = lab_parent_id.Text!=""?Int32.Parse(lab_parent_id.Text):0;
             emp.UserName = txt_userName.Text;
             if ("".Equals(emp.UserName) || emp.UserName == null)
             {
-                MessageBox.Show("请填写名称！"); return;
+                MessageBox.Show("请填写名称！"); return null;
             }
             emp.Stock = txt_stock.Text;
             if ("".Equals(emp.Stock) || emp.Stock == null)
             {
-                MessageBox.Show("请填写产品库存！"); return;
+                MessageBox.Show("请填写产品库存！"); return null;
             }
             emp.JobNumber = txt_jobNumber.Text;
             if ("".Equals(emp.JobNumber) || emp.JobNumber == null)
             {
-                MessageBox.Show("工号不能为空！"); return;
+                MessageBox.Show("工号不能为空！"); return null;
             }
             //父id
             emp.Parent_id = Int32.Parse(cob_parent_id.Text.Split('.')[0].ToString());
@@ -467,15 +446,61 @@ namespace dome1
             if (getJobNumberList.Count >= 1)
             {
                 MessageBox.Show("工号重复了！", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                return;
+                return null;
             }
+            return emp;
+        }
+
+        /// <summary>
+        /// 统计
+        /// </summary>
+        /// <param name="emp"></param>
+        public void statistics(employeeLevel emp)
+        {
+            //得到刚添加的数据
+            List<employeeLevel> jobList = sql.getWhereJobNuber(emp.JobNumber);
+            if (jobList.Count == 0) jobList.Add(emp);
+            //统计
+            foreach (employeeLevel temp1 in jobList)
+            {
+                //根据id查询,统计下级总数
+                temp1.SubordinateNumber = sql.getEmployeeLevelAchild(temp1.Id).Count.ToString();
+                //统计商户数量
+                temp1.MerchantNumber = sql.getEmployeeLevelMerchant(temp1.Id).Count.ToString();
+
+                //统计上级总数
+                int count = 0;
+                List<employeeLevel> ttst = new List<employeeLevel>();
+                this.getParentCount(temp1.Parent_id, count, ttst);
+                temp1.SuperiorNumber = ttst.Count.ToString();
+
+                //执行修改
+                int ss = sql.setEmployeeLevelUpdate(temp1);
+
+                //调用统计
+                this.getParentCount2(temp1);
+            }
+        }
+
+
+        /// <summary>
+        /// 添加员工
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //定义实体变量
+            employeeLevel emp = new employeeLevel();
+            //验证后得到数据,
+            if (this.vadata(emp) == null) return;
             //调用add
             int tt = sql.setEmployeeLeveLAdd(emp);
             if (tt == 1)
             {
-                //调用函数,加载，刷新
-                //this.dataNode();
-
+                //统计
+                this.statistics(emp);
+                //日志信息
                 employeeLevelLog empLog = new employeeLevelLog();
                 List<employeeLevel> st= sql.getEmployeeLevelParent(emp.Parent_id);
                 if(st!=null && st.Count!=0){
@@ -484,6 +509,8 @@ namespace dome1
                     empLog.Stock = emp.Stock;
                     this.setLog(empLog);
                 }
+                //调用函数,加载，刷新
+                this.dataNode("");
                 MessageBox.Show("添加成功！");
             }
             else {
@@ -566,13 +593,14 @@ namespace dome1
             foreach (employeeLevel temp in st)
             {
                 ListViewItem lv = new ListViewItem(temp.Id.ToString());
-                lv.SubItems.Add(temp.UserName);
-                lv.SubItems.Add(temp.JobNumber);
-                lv.SubItems.Add(temp.Stock + "");
-                lv.SubItems.Add(temp.Parent_id + "");
-
-                lv.SubItems.Add(temp.DateTime.ToString());
-                lv.SubItems.Add(temp.Shuxin);
+                lv.SubItems.Add(temp.UserName);                     //名称
+                lv.SubItems.Add(temp.JobNumber);                    //工号
+                lv.SubItems.Add(temp.SuperiorNumber);               //上级数量
+                lv.SubItems.Add(temp.SubordinateNumber);            //下级数量
+                lv.SubItems.Add(temp.MerchantNumber);               //商户数量
+                lv.SubItems.Add(temp.Stock + "");                   //产品
+                lv.SubItems.Add(temp.DateTime.ToString());          //录入时间
+                lv.SubItems.Add(temp.Parent_id + "");               //父id
                 lv.Tag = temp;
 
                 listView1.Items.Add(lv);
@@ -589,25 +617,20 @@ namespace dome1
         {
             if (listView3.SelectedItems.Count != 0)
             {
-                int num = Int32.Parse(listView3.SelectedItems[0].SubItems[0].Text);
+                int id = Int32.Parse(listView3.SelectedItems[0].SubItems[0].Text);
                 //id
-                lab_id.Text = num.ToString();
+                lab_id.Text = id.ToString();
                 //父id
-                lab_parent_id.Text = listView3.SelectedItems[0].SubItems[4].Text;
-                this.ListView_TreeView_click(num, "listView3");
-                //统计上下级
-                //统计上级总数
-                int count = 0;
-                List<employeeLevel> parent1 = new List<employeeLevel>();
-                this.getParentCount(Int32.Parse(listView3.SelectedItems[0].SubItems[4].Text), count, parent1);
+                lab_parent_id.Text = listView3.SelectedItems[0].SubItems[8].Text;
+                //上级数量
+                btn_Superior.Text = "上级(" + listView3.SelectedItems[0].SubItems[3].Text + ")";
+                //下级数量
+                btn_subordinate.Text = "下级(" + listView3.SelectedItems[0].SubItems[4].Text + ")";
+                //商户数量
+                btn_Merchant.Text = "商户(" + listView3.SelectedItems[0].SubItems[5].Text + ")";
 
-
-                //根据id查询,统计下级总数
-                List<employeeLevel> Achildlist = sql.getEmployeeLevelAchild(num);
-                btn_subordinate.Text = "下级(" + Achildlist.Count + ")";
-                //统计商户数量
-                List<employeeLevel> Merchantlist = sql.getEmployeeLevelMerchant(num);
-                btn_Merchant.Text = "商户(" + Merchantlist.Count + ")";
+                //遍历数据
+                this.ListView_TreeView_click(id, "listView3");
             }
         }
 
@@ -622,23 +645,24 @@ namespace dome1
             //判断是否选中了
             if (listView1.SelectedItems.Count != 0 || listView3.SelectedItems.Count != 0)
             {
+                employeeLevel emp = new employeeLevel();
                 //得到id
                 string id = lab_id.Text;
                 //判断是否选中了
                 if (id.Length != 0 && id != "")
                 {
                     DialogResult dr = MessageBox.Show("您确定要删除吗？", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                    if (dr != DialogResult.OK)
-                    {
-                        //点取消的代码
-                        return;
-                    }
+                    if (dr != DialogResult.OK) return; //点取消的代码  
+                    //得到id
                     int num = Int32.Parse(id);
+                    emp=sql.getEmployeeLevelParent(num)[0];
                     int tt = sql.setEmployeeLevelDelete(num);
                     if (tt != -1)
                     {
+                        //统计
+                        this.statistics(emp);
                         //调用函数,加载，刷新
-                        this.dataNode();
+                        this.dataNode("");
                         MessageBox.Show("删除成功!");
                     }
                     else
@@ -655,7 +679,7 @@ namespace dome1
         }
 
         /// <summary>
-        /// 根据日期查询日志
+        /// 根据日期查询日志，员工信息
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -663,6 +687,9 @@ namespace dome1
         {
            DateTime date= DateTime.Parse(dataTime.Text);
            this.getLog(date.ToString());
+           //调用函数,加载，刷新
+           this.dataNode(date.ToString());
+            
         }
 
         /// <summary>
@@ -672,7 +699,7 @@ namespace dome1
         /// <param name="e"></param>
         private void btn_Merchant_Click(object sender, EventArgs e)
         {
-                        //得到id
+            //得到id
             string id = lab_id.Text;
             //判断是否选中了
             if (id.Length != 0 && id != "")
@@ -685,11 +712,14 @@ namespace dome1
                 foreach (employeeLevel temp in Merchantlist)
                 {
                     ListViewItem lv = new ListViewItem(temp.Id.ToString());
-                    lv.SubItems.Add(temp.UserName);
-                    lv.SubItems.Add(temp.JobNumber);
-                    lv.SubItems.Add(temp.Stock + "");
-                    lv.SubItems.Add(temp.Parent_id + "");
-                    lv.SubItems.Add(temp.DateTime.ToString());
+                    lv.SubItems.Add(temp.UserName);                     //名称
+                    lv.SubItems.Add(temp.JobNumber);                    //工号
+                    lv.SubItems.Add(temp.SuperiorNumber);               //上级数量
+                    lv.SubItems.Add(temp.SubordinateNumber);            //下级数量
+                    lv.SubItems.Add(temp.MerchantNumber);               //商户数量
+                    lv.SubItems.Add(temp.Stock + "");                   //产品
+                    lv.SubItems.Add(temp.DateTime.ToString());          //录入时间
+                    lv.SubItems.Add(temp.Parent_id + "");               //父id
                     lv.Tag = temp;
 
                     listView3.Items.Add(lv);
@@ -708,7 +738,8 @@ namespace dome1
         /// <param name="e"></param>
         private void 刷新ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.dataNode();
+            //调用函数,加载，刷新
+            this.dataNode("");
         }
 
         /// <summary>
@@ -725,7 +756,6 @@ namespace dome1
                     MessageBox.Show("商户不能增加商户！");
                     return;
                 }
-
                 cob_parent_id.Items.Clear();
                 cob_parent_id.Items.Add("0.一级");
                 cob_parent_id.Items.Add(listView1.SelectedItems[0].SubItems[0].Text + "." + listView1.SelectedItems[0].SubItems[1].Text);
@@ -747,6 +777,8 @@ namespace dome1
         /// <param name="e"></param>
         private void employeeLevelMain_FormClosing(object sender, FormClosingEventArgs e)
         {
+            sql.close();
+            sqlLog.close();
             Application.Exit();
         }
 
@@ -793,12 +825,31 @@ namespace dome1
         /// 单击节点执行
         /// </summary>
         public void Addtreeview()
-        {
+        {  
             TreeNode de = treeView1.SelectedNode;
-            if (treeView1.SelectedNode != null && de.Level>0)
+            if (de.Level == 0)
             {
-                //MessageBox.Show(de.Text, "选中了");
-                return;
+                if (de.Text == "所有员工") {
+                   List<employeeLevel> st= sql.getEmployeeLevel(null);
+                   listView1.Items.Clear();
+                   //循环遍历
+                   foreach (employeeLevel temp in st)
+                   {
+                       ListViewItem lv = new ListViewItem(temp.Id.ToString());
+                       lv.SubItems.Add(temp.UserName);                     //名称
+                       lv.SubItems.Add(temp.JobNumber);                    //工号
+                       lv.SubItems.Add(temp.SuperiorNumber);               //上级数量
+                       lv.SubItems.Add(temp.SubordinateNumber);            //下级数量
+                       lv.SubItems.Add(temp.MerchantNumber);               //商户数量
+                       lv.SubItems.Add(temp.Stock + "");                   //产品
+                       lv.SubItems.Add(temp.DateTime.ToString());          //录入时间
+                       lv.SubItems.Add(temp.Parent_id + "");               //父id
+                       lv.Tag = temp;
+
+                       listView1.Items.Add(lv);
+
+                   }
+                }
             }
         }
 
@@ -834,12 +885,9 @@ namespace dome1
 
         /// <summary>
         /// 保存Excel文档流到文件
-        ///
-        /// Excel文档流
-        /// 文件名
         /// </summary>
-        /// <param name="ms"></param>
-        /// <param name="fileName"></param>
+        /// <param name="ms">Excel文档流</param>
+        /// <param name="fileName">文件名</param>
         private static void SaveToFile(MemoryStream ms, string fileName)
         {
             try
@@ -877,8 +925,8 @@ namespace dome1
                 workbook.DocumentSummaryInformation = dsi;
 
                 SummaryInformation si = PropertySetFactory.CreateSummaryInformation();
-                si.Author = "文件作者信息";               //填加xls文件作者信息
-                si.ApplicationName = "创建程序信息";      //填加xls文件创建程序信息
+                si.Author = "零风";               //填加xls文件作者信息
+                si.ApplicationName = "盟友1.10";      //填加xls文件创建程序信息
                 si.LastAuthor = "最后保存者信息";          //填加xls文件最后保存者信息
                 si.Comments = "作者信息";                   //填加xls文件作者信息
                 si.Title = "标题信息";                  //填加xls文件标题信息
@@ -948,7 +996,49 @@ namespace dome1
                         headStyle.SetFont(font);
                         foreach (DataColumn column in dtSource.Columns)
                         {
-                            headerRow.CreateCell(column.Ordinal).SetCellValue(column.ColumnName);
+                            string strName = "";
+                            switch (column.Caption)
+                            {
+                                case "id":
+                                    strName = "编号";
+                                    break;
+                                case "jobNumber":
+                                    strName = "工号";
+                                    break;
+                                case "userName":
+                                    strName = "名称";
+                                    break;
+                                case "parent_id":
+                                    strName = "父id";
+                                    break;
+                                case "stock":
+                                    strName = "产品";
+                                    break;
+                                case "level":
+                                    strName = "等级";
+                                    break;
+                                case "identity":
+                                    strName = "身份证";
+                                    break;
+                                case "dateTime":
+                                    strName = "录入时间";
+                                    break;
+                                case "shuxin":
+                                    strName = "属性";
+                                    break;
+                                case "superiorNumber":
+                                    strName = "上级数量";
+                                    break;
+                                case "subordinateNumber":
+                                    strName = "下级数量";
+                                    break;
+                                case "merchantNumber":
+                                    strName = "商户数量";
+                                    break;
+                                default:
+                                    break;
+                            }
+                            headerRow.CreateCell(column.Ordinal).SetCellValue(strName);
                             headerRow.GetCell(column.Ordinal).CellStyle = headStyle;
 
                             //设置列宽
@@ -1063,5 +1153,6 @@ namespace dome1
             }
             return dt;
         }
+
     }
 }

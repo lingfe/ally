@@ -20,14 +20,35 @@ namespace BLL
         DBHeple ple = new DBHeple();
 
         /// <summary>
+        /// 关闭数据库连接
+        /// </summary>
+        public void close()
+        {
+            ple.close();
+        }
+
+        /// <summary>
         /// 返回所有员工结果
         /// </summary>
         /// <returns>结果</returns>
-        public List<employeeLevel> getEmployeeLevel()
+        public List<employeeLevel> getEmployeeLevel(string datetime)
         {
+
             List<employeeLevel> st = new List<employeeLevel>();
-            return st = ple.getEmployeeLevel(string.Format("SELECT * FROM employeeLevel"));
+            if (datetime == null) {
+                return st = ple.getEmployeeLevel(string.Format("SELECT * FROM employeeLevel"));
+            }
+            else if (datetime == "" || datetime.Length == 0)
+            {
+                return st = ple.getEmployeeLevel(string.Format("SELECT * FROM employeeLevel WHERE DATEDIFF(DATETIME,NOW())=0 ORDER BY id DESC"));
+            }
+            else
+            {
+                return st = ple.getEmployeeLevel(string.Format("SELECT * FROM employeeLevel WHERE DATEDIFF(DATETIME,'{0}')=0 ORDER BY id DESC", datetime.ToString()));
+            }
         }
+
+
 
         /// <summary>
         ///  返回所有员工结果，DataTable类型
@@ -37,6 +58,16 @@ namespace BLL
             return ple.getEmployeeLevelDataTable(string.Format("SELECT * FROM employeeLevel"));
         }
 
+        /// <summary>
+        /// 根据工号查询
+        /// </summary>
+        /// <param name="jobNumber">工号</param>
+        /// <returns></returns>
+        public List<employeeLevel> getWhereJobNuber(string jobNumber)
+        {
+            return ple.getEmployeeLevel(string.Format("SELECT * FROM employeeLevel t WHERE t.jobNumber='{0}'", jobNumber));
+        }
+  
 
         /// <summary>
         /// 返回员工父级结果
@@ -60,7 +91,7 @@ namespace BLL
         }
 
         /// <summary>
-        /// 返回员工子级结果
+        /// 返回员工盟友结果
         /// </summary>
         /// <param name="fo">查询条件</param>
         /// <returns>结果</returns>
@@ -86,8 +117,8 @@ namespace BLL
         /// <param name="emp">实体</param>
         /// <returns>添加状态</returns>
         public int setEmployeeLeveLAdd(employeeLevel emp) {
-            string sql = string.Format(" INSERT  INTO `employeeLevel`(`jobNumber`,`userName`,`parent_id`,`stock`,`level`,`identity`,`dateTime`,`shuxin`) " +
-                "VALUES  ('{0}','{1}',{2},'{3}',{4},'{5}',DEFAULT,'{6}')", emp.JobNumber, emp.UserName, emp.Parent_id, emp.Stock, emp.Level, emp.Identity,emp.Shuxin);
+            string sql = string.Format(" INSERT  INTO `employeeLevel`(`jobNumber`,`userName`,`parent_id`,`stock`,`dateTime`,`shuxin`) " +
+                "VALUES  ('{0}','{1}',{2},'{3}',DEFAULT,'{4}')", emp.JobNumber, emp.UserName, emp.Parent_id, emp.Stock, emp.Shuxin);
             return ple.GetExecuteNonQuery(sql);
         }
 
@@ -106,8 +137,8 @@ namespace BLL
         /// <param name="emp">实体</param>
         /// <returns>修改状态</returns>
         public int setEmployeeLevelUpdate(employeeLevel emp) {
-            string sql = string.Format("update employeeLevel set jobNumber='{0}',userName='{1}',parent_id={2},stock='{3}',level='{4}',identity='{5}',shuxin='{6}' where id={7}",
-                emp.JobNumber,emp.UserName,emp.Parent_id,emp.Stock,emp.Level,emp.Identity,emp.Shuxin,emp.Id);
+            string sql = string.Format("update employeeLevel set jobNumber='{0}',userName='{1}',parent_id={2},stock='{3}',shuxin='{4}',superiorNumber='{5}',subordinateNumber='{6}',merchantNumber='{7}' where id={8}",
+                emp.JobNumber,emp.UserName,emp.Parent_id,emp.Stock,emp.Shuxin,emp.SuperiorNumber,emp.SubordinateNumber,emp.MerchantNumber,emp.Id);
             return ple.GetExecuteNonQuery(sql);
         }
 
@@ -117,7 +148,7 @@ namespace BLL
         /// <param name="searchKey">搜索条件</param>
         /// <returns>结果</returns>
         public List<employeeLevel> getEmployeeLeveLikeSearch(string searchKey) {
-            string sql = string.Format(" SELECT * FROM employeeLevel t WHERE 1=1 AND t.userName LIKE '%{0}%' OR t.jobNumber LIKE '%{1}%' OR t.stock LIKE '%{2}%' OR t.identity LIKE '%{3}%' OR t.shuxin LIKE '%{4}%'", searchKey, searchKey, searchKey, searchKey, searchKey);
+            string sql = string.Format(" SELECT * FROM employeeLevel t WHERE 1=1 AND t.userName LIKE '%{0}%' OR t.jobNumber LIKE '%{1}%' OR t.stock LIKE '%{2}%' OR  t.shuxin LIKE '%{3}%'", searchKey, searchKey, searchKey, searchKey);
             return ple.getEmployeeLevel(sql);
         }
 

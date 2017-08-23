@@ -19,6 +19,14 @@ namespace BLL
         DBHeple ple = new DBHeple();
 
         /// <summary>
+        /// 关闭数据库连接
+        /// </summary>
+        public void close()
+        {
+            ple.close();
+        }
+
+        /// <summary>
         /// 管理员登录
         /// </summary>
         /// <param name="userName">管理员名称</param>

@@ -39,14 +39,17 @@
             this.编号 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.名称 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.工号 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.产品 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.父级id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.dateTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.产品 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.dateTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.父级id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.刷新ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripMenuItem();
             this.选为上级ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.导出到ExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label7 = new System.Windows.Forms.Label();
             this.txt_userName = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -75,13 +78,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.btn_Merchant = new System.Windows.Forms.Button();
-            this.listView3 = new System.Windows.Forms.ListView();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lab_id = new System.Windows.Forms.Label();
             this.lab_parent_id = new System.Windows.Forms.Label();
             this.dataTime = new System.Windows.Forms.DateTimePicker();
@@ -91,9 +87,16 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.导出到ExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listView3 = new System.Windows.Forms.ListView();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -136,10 +139,13 @@
             // 
             // treeView1
             // 
+            this.treeView1.CausesValidation = false;
+            this.treeView1.HideSelection = false;
             this.treeView1.Location = new System.Drawing.Point(14, 28);
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(224, 515);
             this.treeView1.TabIndex = 3;
+            this.treeView1.TabStop = false;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
             // lab_stock
@@ -189,23 +195,31 @@
             this.工号.Text = "工号";
             this.工号.Width = 80;
             // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "上级";
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "下级";
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "商户";
+            // 
             // 产品
             // 
             this.产品.Text = "产品";
-            // 
-            // 父级id
-            // 
-            this.父级id.Text = "父级id";
-            this.父级id.Width = 80;
             // 
             // dateTime
             // 
             this.dateTime.Text = "录入时间";
             this.dateTime.Width = 130;
             // 
-            // columnHeader7
+            // 父级id
             // 
-            this.columnHeader7.Text = "商户";
+            this.父级id.Text = "父级id";
+            this.父级id.Width = 80;
             // 
             // contextMenuStrip1
             // 
@@ -215,7 +229,7 @@
             this.选为上级ToolStripMenuItem,
             this.导出到ExcelToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(157, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(157, 92);
             // 
             // 刷新ToolStripMenuItem
             // 
@@ -237,6 +251,13 @@
             this.选为上级ToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.选为上级ToolStripMenuItem.Text = "增加下级(商户)";
             this.选为上级ToolStripMenuItem.Click += new System.EventHandler(this.选为上级ToolStripMenuItem_Click);
+            // 
+            // 导出到ExcelToolStripMenuItem
+            // 
+            this.导出到ExcelToolStripMenuItem.Name = "导出到ExcelToolStripMenuItem";
+            this.导出到ExcelToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.导出到ExcelToolStripMenuItem.Text = "导出到Excel";
+            this.导出到ExcelToolStripMenuItem.Click += new System.EventHandler(this.导出到ExcelToolStripMenuItem_Click);
             // 
             // label7
             // 
@@ -282,8 +303,6 @@
             // cob_parent_id
             // 
             this.cob_parent_id.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cob_parent_id.Items.AddRange(new object[] {
-            "0.一级"});
             this.cob_parent_id.Location = new System.Drawing.Point(489, 443);
             this.cob_parent_id.Name = "cob_parent_id";
             this.cob_parent_id.Size = new System.Drawing.Size(121, 20);
@@ -474,55 +493,6 @@
             this.btn_Merchant.UseVisualStyleBackColor = true;
             this.btn_Merchant.Click += new System.EventHandler(this.btn_Merchant_Click);
             // 
-            // listView3
-            // 
-            this.listView3.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader11});
-            this.listView3.FullRowSelect = true;
-            this.listView3.Location = new System.Drawing.Point(844, 28);
-            this.listView3.MultiSelect = false;
-            this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(249, 515);
-            this.listView3.TabIndex = 4;
-            this.listView3.UseCompatibleStateImageBehavior = false;
-            this.listView3.View = System.Windows.Forms.View.Details;
-            this.listView3.SelectedIndexChanged += new System.EventHandler(this.listView3_SelectedIndexChanged);
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "编号";
-            this.columnHeader4.Width = 80;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "名称";
-            this.columnHeader5.Width = 80;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "工号";
-            this.columnHeader6.Width = 80;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "产品";
-            this.columnHeader8.Width = 80;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "上级";
-            this.columnHeader9.Width = 80;
-            // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Text = "录入时间";
-            this.columnHeader11.Width = 120;
-            // 
             // lab_id
             // 
             this.lab_id.AutoSize = true;
@@ -599,20 +569,67 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // columnHeader10
+            // listView3
             // 
-            this.columnHeader10.Text = "下级";
+            this.listView3.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader11,
+            this.columnHeader13,
+            this.columnHeader14,
+            this.columnHeader15});
+            this.listView3.FullRowSelect = true;
+            this.listView3.Location = new System.Drawing.Point(844, 28);
+            this.listView3.Name = "listView3";
+            this.listView3.Size = new System.Drawing.Size(249, 515);
+            this.listView3.TabIndex = 4;
+            this.listView3.UseCompatibleStateImageBehavior = false;
+            this.listView3.View = System.Windows.Forms.View.Details;
+            this.listView3.SelectedIndexChanged += new System.EventHandler(this.listView3_SelectedIndexChanged);
             // 
-            // columnHeader12
+            // columnHeader4
             // 
-            this.columnHeader12.Text = "上级";
+            this.columnHeader4.Text = "编号";
+            this.columnHeader4.Width = 80;
             // 
-            // 导出到ExcelToolStripMenuItem
+            // columnHeader5
             // 
-            this.导出到ExcelToolStripMenuItem.Name = "导出到ExcelToolStripMenuItem";
-            this.导出到ExcelToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.导出到ExcelToolStripMenuItem.Text = "导出到Excel";
-            this.导出到ExcelToolStripMenuItem.Click += new System.EventHandler(this.导出到ExcelToolStripMenuItem_Click);
+            this.columnHeader5.Text = "名称";
+            this.columnHeader5.Width = 80;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "工号";
+            this.columnHeader6.Width = 80;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "上级";
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "下级";
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "商户";
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "产品";
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Text = "录入时间";
+            this.columnHeader14.Width = 130;
+            // 
+            // columnHeader15
+            // 
+            this.columnHeader15.Text = "父级id";
+            this.columnHeader15.Width = 80;
             // 
             // employeeLevelMain
             // 
@@ -710,13 +727,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btn_Merchant;
-        private System.Windows.Forms.ListView listView3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.Label lab_id;
         private System.Windows.Forms.Label lab_parent_id;
         private System.Windows.Forms.DateTimePicker dataTime;
@@ -735,6 +745,16 @@
         private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.ToolStripMenuItem 导出到ExcelToolStripMenuItem;
+        private System.Windows.Forms.ListView listView3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
+        private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.Windows.Forms.ColumnHeader columnHeader14;
+        private System.Windows.Forms.ColumnHeader columnHeader15;
     }
 }
 

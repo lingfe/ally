@@ -52,7 +52,7 @@
 	<summary>
 		<codepage>1252</codepage>
 		<title>Installation Database</title>
-		<subject></subject>
+		<subject>Setup1.5.0</subject>
 		<author>##ID_STRING2##</author>
 		<keywords>Installer,MSI,Database</keywords>
 		<comments>Contact:  Your local administrator</comments>
@@ -340,15 +340,16 @@
 		<col def="S0">ISDotNetInstallerArgsCommit</col>
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
-		<row><td>Component</td><td>{292A0403-813B-4C66-9ED7-518F6971CBDD}</td><td>INSTALLDIR</td><td>2</td><td/><td>File</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Component1</td><td>{8237B0A3-9D87-4047-9C71-C8B72E0BC2C6}</td><td>INSTALLDIR</td><td>2</td><td/><td>File1</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Component2</td><td>{BE8613EB-DEF6-4622-9FA3-0A3DFC406118}</td><td>INSTALLDIR</td><td>2</td><td/><td>File2</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Component3</td><td>{4A978EC4-00D5-4AB6-B14B-7D9174E2D401}</td><td>INSTALLDIR</td><td>2</td><td/><td>File3</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Component4</td><td>{F6D49B49-0D47-4405-8ABD-2260A7D54177}</td><td>SORUCE</td><td>2</td><td/><td>File4</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Component5</td><td>{0D321855-7674-4FDC-9A87-6053E09F4E7B}</td><td>SORUCE</td><td>2</td><td/><td>File5</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Component6</td><td>{320516E7-B532-42BA-AC70-403862041629}</td><td>SORUCE</td><td>2</td><td/><td>File6</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Component7</td><td>{EFB9FD4F-D210-4FC2-96AA-6A5C6B2AC4C5}</td><td>SORUCE</td><td>2</td><td/><td>File7</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Component</td><td>{254480C1-46C1-4236-A46D-6DE83063E06D}</td><td>INSTALLDIR</td><td>2</td><td/><td>File</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Component1</td><td>{BC7E9B0B-CFDF-499D-8FEC-971C62F0DCD3}</td><td>INSTALLDIR</td><td>2</td><td/><td>File1</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Component2</td><td>{DE7499A4-4106-4B34-BBDD-486487D49026}</td><td>INSTALLDIR</td><td>2</td><td/><td>File2</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Component3</td><td>{FBA3151D-C5A3-4455-A03F-F9732A9E1FB6}</td><td>INSTALLDIR</td><td>2</td><td/><td>File3</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Component4</td><td>{649DA747-BEB7-4E0F-AE53-16AFD85ACE46}</td><td>SORUCE</td><td>2</td><td/><td>File4</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Component5</td><td>{B355EF48-04FD-400B-9847-CE98B3F05FBA}</td><td>SORUCE</td><td>2</td><td/><td>File5</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Component6</td><td>{E759B74F-4024-40E1-B2C7-3A41580D4312}</td><td>SORUCE</td><td>2</td><td/><td>File6</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Component7</td><td>{0A6CB847-6F41-4C3A-AF04-B640A05CB8FC}</td><td>SORUCE</td><td>2</td><td/><td>File7</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{AD1DA6CB-0F4F-4E67-A9F1-91283F266AE0}</td><td>SORUCE</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{99FEAF0A-D6FB-4D25-9806-26E256722541}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>IS_ININSTALL_SHORTCUT</td><td>{04429860-F8CC-44F3-A34A-D96A9D50F5C2}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
@@ -918,17 +919,17 @@
 		<row><td>CustomSetup</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>OutOfNoRbDiskSpace &lt;&gt; 1</td><td>0</td></row>
 		<row><td>CustomSetup</td><td>Next</td><td>[_IsSetupTypeMin]</td><td>Custom</td><td>1</td><td>0</td></row>
 		<row><td>CustomSetupTips</td><td>OK</td><td>EndDialog</td><td>Return</td><td>1</td><td>1</td></row>
-		<row><td>CustomerInformation</td><td>Back</td><td>NewDialog</td><td>LicenseAgreement</td><td>1</td><td>1</td></row>
+		<row><td>CustomerInformation</td><td>Back</td><td>NewDialog</td><td>LicenseAgreement</td><td>NOT Installed</td><td>1</td></row>
 		<row><td>CustomerInformation</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
 		<row><td>CustomerInformation</td><td>Next</td><td>EndDialog</td><td>Exit</td><td>(SERIALNUMVALRETRYLIMIT) And (SERIALNUMVALRETRYLIMIT&lt;0) And (SERIALNUMVALRETURN&lt;&gt;SERIALNUMVALSUCCESSRETVAL)</td><td>2</td></row>
 		<row><td>CustomerInformation</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>(Not SERIALNUMVALRETURN) OR (SERIALNUMVALRETURN=SERIALNUMVALSUCCESSRETVAL)</td><td>3</td></row>
 		<row><td>CustomerInformation</td><td>Next</td><td>[ALLUSERS]</td><td>1</td><td>ApplicationUsers = "AllUsers" And Privileged</td><td>1</td></row>
 		<row><td>CustomerInformation</td><td>Next</td><td>[ALLUSERS]</td><td>{}</td><td>ApplicationUsers = "OnlyCurrentUser" And Privileged</td><td>2</td></row>
-		<row><td>DatabaseFolder</td><td>Back</td><td>NewDialog</td><td>CustomerInformation</td><td>1</td><td>1</td></row>
+		<row><td>DatabaseFolder</td><td>Back</td><td>NewDialog</td><td>LicenseAgreement</td><td>NOT Installed</td><td>1</td></row>
 		<row><td>DatabaseFolder</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>1</td></row>
 		<row><td>DatabaseFolder</td><td>ChangeFolder</td><td>SpawnDialog</td><td>InstallChangeFolder</td><td>1</td><td>1</td></row>
 		<row><td>DatabaseFolder</td><td>ChangeFolder</td><td>[_BrowseProperty]</td><td>DATABASEDIR</td><td>1</td><td>2</td></row>
-		<row><td>DatabaseFolder</td><td>Next</td><td>NewDialog</td><td>SetupType</td><td>1</td><td>1</td></row>
+		<row><td>DatabaseFolder</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>1</td><td>1</td></row>
 		<row><td>DestinationFolder</td><td>Back</td><td>NewDialog</td><td>CustomerInformation</td><td>1</td><td>0</td></row>
 		<row><td>DestinationFolder</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>1</td></row>
 		<row><td>DestinationFolder</td><td>ChangeFolder</td><td>SpawnDialog</td><td>InstallChangeFolder</td><td>1</td><td>1</td></row>
@@ -950,7 +951,7 @@
 		<row><td>LicenseAgreement</td><td>Back</td><td>NewDialog</td><td>InstallWelcome</td><td>1</td><td>0</td></row>
 		<row><td>LicenseAgreement</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
 		<row><td>LicenseAgreement</td><td>ISPrintButton</td><td>DoAction</td><td>ISPrint</td><td>1</td><td>0</td></row>
-		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>CustomerInformation</td><td>AgreeToLicense = "Yes"</td><td>0</td></row>
+		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>DatabaseFolder</td><td>AgreeToLicense = "Yes"</td><td>0</td></row>
 		<row><td>MaintenanceType</td><td>Back</td><td>NewDialog</td><td>MaintenanceWelcome</td><td>1</td><td>0</td></row>
 		<row><td>MaintenanceType</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
 		<row><td>MaintenanceType</td><td>Next</td><td>NewDialog</td><td>CustomSetup</td><td>_IsMaintenance = "Change"</td><td>12</td></row>
@@ -981,7 +982,7 @@
 		<row><td>ReadmeInformation</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>1</td></row>
 		<row><td>ReadmeInformation</td><td>Next</td><td>NewDialog</td><td>CustomerInformation</td><td>1</td><td>1</td></row>
 		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>CustomSetup</td><td>Installed OR _IsSetupTypeMin = "Custom"</td><td>2</td></row>
-		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>CustomerInformation</td><td>NOT Installed</td><td>1</td></row>
+		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>DatabaseFolder</td><td>NOT Installed</td><td>1</td></row>
 		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>MaintenanceType</td><td>Installed AND _IsMaintenance = "Reinstall"</td><td>3</td></row>
 		<row><td>ReadyToInstall</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
 		<row><td>ReadyToInstall</td><td>InstallNow</td><td>EndDialog</td><td>Return</td><td>OutOfNoRbDiskSpace &lt;&gt; 1</td><td>0</td></row>
@@ -1067,6 +1068,7 @@
 		<row><td>INSTALLDIR</td><td>Component6</td></row>
 		<row><td>INSTALLDIR</td><td>Component7</td></row>
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT</td></row>
+		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>INSTALLDIR</td><td>IS_ININSTALL_SHORTCUT</td></row>
 		<row><td>SORUCE</td><td>Component4</td></row>
 		<row><td>SORUCE</td><td>Component5</td></row>
@@ -1163,7 +1165,7 @@
 		<row><td>FavoritesFolder</td><td>TARGETDIR</td><td>.:FAVORI~1|Favorites</td><td/><td>0</td><td/></row>
 		<row><td>FontsFolder</td><td>TARGETDIR</td><td>.:Fonts</td><td/><td>0</td><td/></row>
 		<row><td>GlobalAssemblyCache</td><td>TARGETDIR</td><td>.:Global~1|GlobalAssemblyCache</td><td/><td>0</td><td/></row>
-		<row><td>INSTALLDIR</td><td>MY_PRODUCT_NAME</td><td>.</td><td/><td>0</td><td/></row>
+		<row><td>INSTALLDIR</td><td>SETUP1.5.0</td><td>.</td><td/><td>0</td><td/></row>
 		<row><td>ISCommonFilesFolder</td><td>CommonFilesFolder</td><td>Instal~1|InstallShield</td><td/><td>0</td><td/></row>
 		<row><td>ISMyCompanyDir</td><td>ProgramFilesFolder</td><td>MYCOMP~1|My Company Name</td><td/><td>0</td><td/></row>
 		<row><td>ISMyProductDir</td><td>ISMyCompanyDir</td><td>MYPROD~1|My Product Name</td><td/><td>0</td><td/></row>
@@ -1179,6 +1181,7 @@
 		<row><td>ProgramFilesFolder</td><td>TARGETDIR</td><td>.:PROGRA~1|program files</td><td/><td>0</td><td/></row>
 		<row><td>ProgramMenuFolder</td><td>TARGETDIR</td><td>.:Programs</td><td/><td>3</td><td/></row>
 		<row><td>RecentFolder</td><td>TARGETDIR</td><td>.:Recent</td><td/><td>0</td><td/></row>
+		<row><td>SETUP1.5.0</td><td>DIRECTORY</td><td>SETUP1~1|Setup1.5.0</td><td/><td>0</td><td/></row>
 		<row><td>SORUCE</td><td>DATABASEDIR</td><td>soruce</td><td/><td>0</td><td/></row>
 		<row><td>SendToFolder</td><td>TARGETDIR</td><td>.:SendTo</td><td/><td>3</td><td/></row>
 		<row><td>StartMenuFolder</td><td>TARGETDIR</td><td>.:STARTM~1|Start Menu</td><td/><td>3</td><td/></row>
@@ -1192,8 +1195,10 @@
 		<row><td>USERPROFILE</td><td>TARGETDIR</td><td>.:USERPR~1|UserProfile</td><td/><td>0</td><td/></row>
 		<row><td>WindowsFolder</td><td>TARGETDIR</td><td>.:Windows</td><td/><td>0</td><td/></row>
 		<row><td>WindowsVolume</td><td>TARGETDIR</td><td>.:WinRoot</td><td/><td>0</td><td/></row>
+		<row><td>company_name</td><td>ProgramMenuFolder</td><td>贵州合~1|贵州合丰力科技有限公司</td><td/><td>1</td><td/></row>
 		<row><td>directory1</td><td>ProgramMenuFolder</td><td>公司名称</td><td/><td>1</td><td/></row>
 		<row><td>setup1</td><td>directory1</td><td>setup1</td><td/><td>1</td><td/></row>
+		<row><td>setup11</td><td>company_name</td><td>Setup1</td><td/><td>1</td><td/></row>
 	</table>
 
 	<table name="DrLocator">
@@ -1894,6 +1899,7 @@
 		<row><td>AlwaysInstall</td><td>Component6</td></row>
 		<row><td>AlwaysInstall</td><td>Component7</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>AlwaysInstall</td><td>IS_ININSTALL_SHORTCUT</td></row>
 	</table>
 
@@ -2061,15 +2067,16 @@
 		<col def="S0">FTPLocation</col>
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
-		<row><td>Component</td><td/><td/><td>_0F484FB4_A30A_4CA9_AD7A_85637F759210_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Component1</td><td/><td/><td>_07A36A49_6F3B_4D2A_BD31_A669DFA03A0E_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Component2</td><td/><td/><td>_844465DC_7BF9_48C3_9810_C4F3B7DA5042_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Component3</td><td/><td/><td>_81779B4E_5743_4ED5_9E5B_9BE9562FB032_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Component4</td><td/><td/><td>_3C0F678B_D8F9_4F64_8E1C_4B43051950AC_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Component5</td><td/><td/><td>_0CE8D33D_C305_46DA_AA33_891F8B8CD08A_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Component6</td><td/><td/><td>_5DF3EDF7_6080_44F4_8DC5_904DAEA85456_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Component7</td><td/><td/><td>_0161FA08_C82C_4246_B3DC_7B87A583EFE4_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Component</td><td/><td/><td>_738466C9_9C1B_4E32_AFF6_CD0D924538F1_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Component1</td><td/><td/><td>_709DEA2F_EC27_44E4_8048_17900DA6755A_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Component2</td><td/><td/><td>_DC15E701_B49B_4762_B578_F87E4DE0D0FF_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Component3</td><td/><td/><td>_746D20F9_D2BE_41EE_9DE0_41451B946892_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Component4</td><td/><td/><td>_7EF44788_75BD_497D_870F_3D15617B3802_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Component5</td><td/><td/><td>_045B1620_F9FC_4403_8C44_7A031AFA4F7F_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Component6</td><td/><td/><td>_688D071C_1579_43D4_9F6C_313C0F5C2192_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Component7</td><td/><td/><td>_EEB49340_4AB9_453C_9BF9_2413E917BF82_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_5B10F9E8_34A1_4079_AB79_24B71E2B1B51_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_A38B5E81_5C82_4073_8372_2D9E2D6D6AF7_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>IS_ININSTALL_SHORTCUT</td><td/><td/><td>_41493369_4929_46AA_AA48_FEE363775F15_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
@@ -2663,7 +2670,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>2052</td><td>贵州合丰力科技有限公司</td><td>0</td><td/><td>-1675283925</td></row>
+		<row><td>COMPANY_NAME</td><td>2052</td><td>贵州合丰力科技有限公司</td><td>0</td><td/><td>-1138419056</td></row>
 		<row><td>DN_AlwaysInstall</td><td>2052</td><td>始终安装</td><td>0</td><td/><td>-1809513710</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>2052</td><td>系统颜色设置不足以运行 [ProductName]。</td><td>0</td><td/><td>-1809513710</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION45FULL</td><td>2052</td><td>Microsoft .NET Framework 4.5 Full package or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-1809513710</td></row>
@@ -3480,6 +3487,14 @@
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME1</td><td>2052</td><td>盟友</td><td>0</td><td/><td>-1809487086</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME2</td><td>1033</td><td>盟友卸载</td><td>0</td><td/><td>-1809476846</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME2</td><td>2052</td><td>盟友卸载</td><td>0</td><td/><td>-1809476846</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME3</td><td>1033</td><td/><td>0</td><td/><td>-1406857875</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME3</td><td>2052</td><td>盟友</td><td>0</td><td/><td>-1406849683</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME4</td><td>1033</td><td/><td>0</td><td/><td>-1406834384</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME4</td><td>2052</td><td>盟友</td><td>0</td><td/><td>-1406822096</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME5</td><td>1033</td><td/><td>0</td><td/><td>-1138402672</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME5</td><td>2052</td><td>盟友</td><td>0</td><td/><td>-1138388336</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME6</td><td>1033</td><td/><td>0</td><td/><td>-1138408368</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME6</td><td>2052</td><td>盟友</td><td>0</td><td/><td>-1138404272</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO</td><td>2052</td><td>从以下服务器列表中选择要连接的数据库服务器。</td><td>0</td><td/><td>-1809513710</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_DB</td><td>2052</td><td>从以下的编录名称列表中，选择您希望将其作为目标的数据库编录。</td><td>0</td><td/><td>-1809513710</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_TEMPLATE</td><td>2052</td><td>[IS_SQLBROWSE_INTRO]</td><td>0</td><td/><td>-1809513710</td></row>
@@ -3768,12 +3783,20 @@
 		<row><td>IDS__TargetReq_DESC_PROCESSOR</td><td>2052</td><td>对于运行 [ProductName] 处理器不足。</td><td>0</td><td/><td>-1809513710</td></row>
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>2052</td><td>对于运行 [ProductName] 内存量不足。</td><td>0</td><td/><td>-1809513710</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>2052</td><td>对于运行 [ProductName] 屏幕分辨率不足。</td><td>0</td><td/><td>-1809513710</td></row>
-		<row><td>ID_STRING1</td><td>2052</td><td>http://www.dahuo.com</td><td>0</td><td/><td>-1675275733</td></row>
-		<row><td>ID_STRING2</td><td>2052</td><td>贵州合丰力科技有限公司</td><td>0</td><td/><td>-1675283925</td></row>
+		<row><td>ID_STRING1</td><td>2052</td><td>http://www.dahuo.com</td><td>0</td><td/><td>-1138377648</td></row>
+		<row><td>ID_STRING2</td><td>2052</td><td>贵州合丰力科技有限公司</td><td>0</td><td/><td>-1138419056</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td>盟友卸载</td><td>0</td><td/><td>-1809474798</td></row>
 		<row><td>ID_STRING3</td><td>2052</td><td>盟友卸载</td><td>0</td><td/><td>-1809474798</td></row>
 		<row><td>ID_STRING4</td><td>1033</td><td>盟友</td><td>0</td><td/><td>-1809464558</td></row>
 		<row><td>ID_STRING4</td><td>2052</td><td>盟友</td><td>0</td><td/><td>-1809464558</td></row>
+		<row><td>ID_STRING5</td><td>1033</td><td>盟友</td><td>0</td><td/><td>-1406847635</td></row>
+		<row><td>ID_STRING5</td><td>2052</td><td>盟友</td><td>0</td><td/><td>-1406847635</td></row>
+		<row><td>ID_STRING6</td><td>1033</td><td>盟友</td><td>0</td><td/><td>-1406820048</td></row>
+		<row><td>ID_STRING6</td><td>2052</td><td>盟友</td><td>0</td><td/><td>-1406820048</td></row>
+		<row><td>ID_STRING7</td><td>1033</td><td>盟友</td><td>0</td><td/><td>-1138386288</td></row>
+		<row><td>ID_STRING7</td><td>2052</td><td>盟友</td><td>0</td><td/><td>-1138386288</td></row>
+		<row><td>ID_STRING8</td><td>1033</td><td>盟友</td><td>0</td><td/><td>-1138402224</td></row>
+		<row><td>ID_STRING8</td><td>2052</td><td>盟友</td><td>0</td><td/><td>-1138402224</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>2052</td><td>系统将不安装此功能。</td><td>0</td><td/><td>-1809513710</td></row>
 	</table>
 
@@ -3890,8 +3913,16 @@
 		<row><td>ARPPRODUCTICON.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\setupicon.ico</td><td>0</td></row>
 		<row><td>UNINST_Uninstall_S_07CFA3DB1E5844638FBA1364EA2E5FB9.exe</td><td/><td>D:\2345下载\favicon-20170816064827837.ico</td><td>0</td></row>
 		<row><td>UNINST_Uninstall_S_BA231A5B6D7C45DBB273190BBCEA4ECF.exe</td><td/><td>D:\2345下载\favicon-20170816064827837.ico</td><td>0</td></row>
+		<row><td>_Built1_5189260F506245A9960A5956CBD0E67E.exe</td><td/><td>D:\2345下载\favicon-20170816064827837.ico</td><td>0</td></row>
+		<row><td>_Built1_5C76EEF0B8A74529981FB6A1A0935F78.exe</td><td/><td>D:\2345下载\favicon-20170816064827837.ico</td><td>0</td></row>
+		<row><td>_Built1_8E4FAC0B28B84308AC150CC354AF54DD.exe</td><td/><td>D:\2345下载\favicon-20170816064827837.ico</td><td>0</td></row>
 		<row><td>_Built1_AA780D9BD60546E1916D4B168C66A53F.exe</td><td/><td>D:\2345下载\favicon-20170816064827837.ico</td><td>0</td></row>
+		<row><td>_Built1_E80E793A6A994C2981EA89DD415FC1F7.exe</td><td/><td>D:\2345下载\favicon-20170816064827837.ico</td><td>0</td></row>
 		<row><td>_Built_06032E5C601F4BB5ACDB27C794E3A1AF.exe</td><td/><td>D:\2345下载\favicon-20170816064827837.ico</td><td>0</td></row>
+		<row><td>_Built_324EC26456AF482285A6D85067801B77.exe</td><td/><td>D:\2345下载\favicon-20170816064827837.ico</td><td>0</td></row>
+		<row><td>_Built_5D9D7F56F7B94B3C85AB926F5608B42B.exe</td><td/><td>D:\2345下载\favicon-20170816064827837.ico</td><td>0</td></row>
+		<row><td>_Built_6B8B054968984D64A4AD9CC2BC01AC2E.exe</td><td/><td>D:\2345下载\favicon-20170816064827837.ico</td><td>0</td></row>
+		<row><td>_Built_6BCD6BE6444A4BC6BDBE5404343B02E5.exe</td><td/><td>D:\2345下载\favicon-20170816064827837.ico</td><td>0</td></row>
 	</table>
 
 	<table name="IniFile">
@@ -4024,7 +4055,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{C9CA2E2D-A017-4B93-9D78-744CA6BF769D}</td></row>
 		<row><td>ISUSSignature</td><td>{07661FE9-4191-4B53-AD39-F3B510AB5429}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant,viewUI,viewRelease,viewLearnMore,viewISToday,viewProject</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewUI,viewRelease,viewLearnMore,viewISToday,viewProject,viewRegistry</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
@@ -4398,7 +4429,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
 		<row><td>ProductCode</td><td>{3CF6EDFD-53E4-4081-9DF9-1694DC364482}</td><td/></row>
-		<row><td>ProductName</td><td>Setup1</td><td/></row>
+		<row><td>ProductName</td><td>Setup1.5.0</td><td/></row>
 		<row><td>ProductVersion</td><td>1.00.0000</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
@@ -4476,7 +4507,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="s72">DirProperty</col>
 		<col def="i2">InstallMode</col>
 		<row><td>UNINST_Uninstall_Setup1</td><td>IS_ININSTALL_SHORTCUT</td><td/><td>setup1</td><td>2</td></row>
-		<row><td>_Built</td><td>Component</td><td/><td>setup1</td><td>2</td></row>
+		<row><td>_Built</td><td>Component</td><td/><td>setup11</td><td>2</td></row>
 	</table>
 
 	<table name="RemoveIniFile">
@@ -4564,8 +4595,8 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="I4">ISAttributes</col>
 		<row><td>UNINST_Uninstall_Setup1</td><td>setup1</td><td>##IDS_SHORTCUT_DISPLAY_NAME2##</td><td>IS_ININSTALL_SHORTCUT</td><td>[SystemFolder]msiexec.exe</td><td>/x {3CF6EDFD-53E4-4081-9DF9-1694DC364482}</td><td/><td/><td>UNINST_Uninstall_S_07CFA3DB1E5844638FBA1364EA2E5FB9.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>UNINST_Uninstall_Setup11</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME2##</td><td>IS_ININSTALL_SHORTCUT</td><td>[SystemFolder]msiexec.exe</td><td>/x {3CF6EDFD-53E4-4081-9DF9-1694DC364482}</td><td/><td/><td>UNINST_Uninstall_S_BA231A5B6D7C45DBB273190BBCEA4ECF.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>_Built</td><td>setup1</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>Component</td><td>AlwaysInstall</td><td/><td/><td/><td>_Built_06032E5C601F4BB5ACDB27C794E3A1AF.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>_Built1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>Component</td><td>AlwaysInstall</td><td/><td/><td/><td>_Built1_AA780D9BD60546E1916D4B168C66A53F.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>_Built</td><td>setup11</td><td>##IDS_SHORTCUT_DISPLAY_NAME6##</td><td>Component</td><td>AlwaysInstall</td><td/><td/><td/><td>_Built_5D9D7F56F7B94B3C85AB926F5608B42B.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>_Built1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME6##</td><td>Component</td><td>AlwaysInstall</td><td/><td/><td/><td>_Built1_5189260F506245A9960A5956CBD0E67E.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">
