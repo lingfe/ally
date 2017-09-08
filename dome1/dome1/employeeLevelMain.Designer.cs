@@ -34,6 +34,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lab_jobNumber = new System.Windows.Forms.Label();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.刷新ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.lab_stock = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.编号 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -77,12 +79,9 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label3 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
-            this.btn_Merchant = new System.Windows.Forms.Button();
             this.lab_id = new System.Windows.Forms.Label();
             this.lab_parent_id = new System.Windows.Forms.Label();
             this.dataTime = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cob_shuxin = new System.Windows.Forms.ComboBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -97,6 +96,11 @@
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label4 = new System.Windows.Forms.Label();
+            this.txt_MerchantNumber = new System.Windows.Forms.TextBox();
+            this.btn_Merchant = new System.Windows.Forms.Label();
+            this.统计上下级数量ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -140,6 +144,7 @@
             // treeView1
             // 
             this.treeView1.CausesValidation = false;
+            this.treeView1.ContextMenuStrip = this.contextMenuStrip2;
             this.treeView1.HideSelection = false;
             this.treeView1.Location = new System.Drawing.Point(14, 28);
             this.treeView1.Name = "treeView1";
@@ -147,6 +152,21 @@
             this.treeView1.TabIndex = 3;
             this.treeView1.TabStop = false;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.刷新ToolStripMenuItem1,
+            this.统计上下级数量ToolStripMenuItem});
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(161, 70);
+            // 
+            // 刷新ToolStripMenuItem1
+            // 
+            this.刷新ToolStripMenuItem1.Name = "刷新ToolStripMenuItem1";
+            this.刷新ToolStripMenuItem1.Size = new System.Drawing.Size(160, 22);
+            this.刷新ToolStripMenuItem1.Text = "刷新";
+            this.刷新ToolStripMenuItem1.Click += new System.EventHandler(this.刷新ToolStripMenuItem1_Click);
             // 
             // lab_stock
             // 
@@ -323,6 +343,7 @@
             this.txt_stock.Name = "txt_stock";
             this.txt_stock.Size = new System.Drawing.Size(122, 21);
             this.txt_stock.TabIndex = 5;
+            this.txt_stock.Text = "0";
             // 
             // button1
             // 
@@ -482,17 +503,6 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button3_Click);
             // 
-            // btn_Merchant
-            // 
-            this.btn_Merchant.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btn_Merchant.Location = new System.Drawing.Point(406, 28);
-            this.btn_Merchant.Name = "btn_Merchant";
-            this.btn_Merchant.Size = new System.Drawing.Size(75, 23);
-            this.btn_Merchant.TabIndex = 7;
-            this.btn_Merchant.Text = "商户(0)";
-            this.btn_Merchant.UseVisualStyleBackColor = true;
-            this.btn_Merchant.Click += new System.EventHandler(this.btn_Merchant_Click);
-            // 
             // lab_id
             // 
             this.lab_id.AutoSize = true;
@@ -518,26 +528,6 @@
             this.dataTime.Size = new System.Drawing.Size(200, 21);
             this.dataTime.TabIndex = 9;
             this.dataTime.CloseUp += new System.EventHandler(this.dataTime_CloseUp);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(626, 446);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 12);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "属性:";
-            // 
-            // cob_shuxin
-            // 
-            this.cob_shuxin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cob_shuxin.Items.AddRange(new object[] {
-            "盟友",
-            "商户"});
-            this.cob_shuxin.Location = new System.Drawing.Point(667, 443);
-            this.cob_shuxin.Name = "cob_shuxin";
-            this.cob_shuxin.Size = new System.Drawing.Size(121, 20);
-            this.cob_shuxin.TabIndex = 6;
             // 
             // statusStrip1
             // 
@@ -631,6 +621,39 @@
             this.columnHeader15.Text = "父级id";
             this.columnHeader15.Width = 80;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(640, 446);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 12);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "商户:";
+            // 
+            // txt_MerchantNumber
+            // 
+            this.txt_MerchantNumber.Location = new System.Drawing.Point(680, 443);
+            this.txt_MerchantNumber.Name = "txt_MerchantNumber";
+            this.txt_MerchantNumber.Size = new System.Drawing.Size(122, 21);
+            this.txt_MerchantNumber.TabIndex = 5;
+            this.txt_MerchantNumber.Text = "0";
+            // 
+            // btn_Merchant
+            // 
+            this.btn_Merchant.AutoSize = true;
+            this.btn_Merchant.Location = new System.Drawing.Point(417, 33);
+            this.btn_Merchant.Name = "btn_Merchant";
+            this.btn_Merchant.Size = new System.Drawing.Size(47, 12);
+            this.btn_Merchant.TabIndex = 2;
+            this.btn_Merchant.Text = "商户(0)";
+            // 
+            // 统计上下级数量ToolStripMenuItem
+            // 
+            this.统计上下级数量ToolStripMenuItem.Name = "统计上下级数量ToolStripMenuItem";
+            this.统计上下级数量ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.统计上下级数量ToolStripMenuItem.Text = "统计上下级数量";
+            this.统计上下级数量ToolStripMenuItem.Click += new System.EventHandler(this.统计上下级数量ToolStripMenuItem_Click);
+            // 
             // employeeLevelMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -643,12 +666,11 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.btn_Merchant);
             this.Controls.Add(this.btn_subordinate);
             this.Controls.Add(this.btn_Superior);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.cob_shuxin);
             this.Controls.Add(this.cob_parent_id);
+            this.Controls.Add(this.txt_MerchantNumber);
             this.Controls.Add(this.txt_stock);
             this.Controls.Add(this.txt_jobNumber);
             this.Controls.Add(this.txt_search);
@@ -659,10 +681,11 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lab_parent_id);
             this.Controls.Add(this.lab_id);
+            this.Controls.Add(this.btn_Merchant);
             this.Controls.Add(this.lab_stock);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.lab_jobNumber);
@@ -677,6 +700,7 @@
             this.Text = "员工等级操作";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.employeeLevelMain_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.contextMenuStrip2.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -726,13 +750,10 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button btn_Merchant;
         private System.Windows.Forms.Label lab_id;
         private System.Windows.Forms.Label lab_parent_id;
         private System.Windows.Forms.DateTimePicker dataTime;
         public System.Windows.Forms.ComboBox cob_parent_id;
-        private System.Windows.Forms.Label label1;
-        public System.Windows.Forms.ComboBox cob_shuxin;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 刷新ToolStripMenuItem;
@@ -755,6 +776,12 @@
         private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.ColumnHeader columnHeader14;
         private System.Windows.Forms.ColumnHeader columnHeader15;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txt_MerchantNumber;
+        private System.Windows.Forms.Label btn_Merchant;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem 刷新ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 统计上下级数量ToolStripMenuItem;
     }
 }
 

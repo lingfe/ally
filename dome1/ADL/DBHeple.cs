@@ -18,8 +18,8 @@ namespace ADL
         public DBHeple() {
             con.Open();
         
-        }
         #region  建立Sql server 数据库连接
+        }
         //SqlConnection con = new SqlConnection("server=.;database=dome1;uid=root;pwd=root;");
         //SqlCommand cmd;
         //SqlDataReader dr;

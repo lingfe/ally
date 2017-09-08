@@ -98,7 +98,7 @@ namespace BLL
         public List<employeeLevel> getEmployeeLevelAchild(int parent_id)
         {
             List<employeeLevel> st = new List<employeeLevel>();
-            return st = ple.getEmployeeLevel(string.Format("SELECT * FROM employeeLevel t WHERE t.parent_id={0}  and shuxin='盟友'", parent_id));
+            return st = ple.getEmployeeLevel(string.Format("SELECT * FROM employeeLevel t WHERE t.parent_id={0}", parent_id));
         }
 
         /// <summary>
@@ -117,8 +117,8 @@ namespace BLL
         /// <param name="emp">实体</param>
         /// <returns>添加状态</returns>
         public int setEmployeeLeveLAdd(employeeLevel emp) {
-            string sql = string.Format(" INSERT  INTO `employeeLevel`(`jobNumber`,`userName`,`parent_id`,`stock`,`dateTime`,`shuxin`) " +
-                "VALUES  ('{0}','{1}',{2},'{3}',DEFAULT,'{4}')", emp.JobNumber, emp.UserName, emp.Parent_id, emp.Stock, emp.Shuxin);
+            string sql = string.Format(" INSERT  INTO `employeeLevel`(`jobNumber`,`userName`,`parent_id`,`stock`,`dateTime`,`shuxin`,`merchantNumber`) " +
+                "VALUES  ('{0}','{1}',{2},'{3}',DEFAULT,'{4}','{5}')", emp.JobNumber, emp.UserName, emp.Parent_id, emp.Stock, emp.Shuxin,emp.MerchantNumber);
             return ple.GetExecuteNonQuery(sql);
         }
 
