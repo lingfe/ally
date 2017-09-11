@@ -36,6 +36,7 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.刷新ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.统计上下级数量ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lab_stock = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.编号 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -99,7 +100,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txt_MerchantNumber = new System.Windows.Forms.TextBox();
             this.btn_Merchant = new System.Windows.Forms.Label();
-            this.统计上下级数量ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -167,6 +167,13 @@
             this.刷新ToolStripMenuItem1.Size = new System.Drawing.Size(160, 22);
             this.刷新ToolStripMenuItem1.Text = "刷新";
             this.刷新ToolStripMenuItem1.Click += new System.EventHandler(this.刷新ToolStripMenuItem1_Click);
+            // 
+            // 统计上下级数量ToolStripMenuItem
+            // 
+            this.统计上下级数量ToolStripMenuItem.Name = "统计上下级数量ToolStripMenuItem";
+            this.统计上下级数量ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.统计上下级数量ToolStripMenuItem.Text = "统计上下级数量";
+            this.统计上下级数量ToolStripMenuItem.Click += new System.EventHandler(this.统计上下级数量ToolStripMenuItem_Click);
             // 
             // lab_stock
             // 
@@ -646,13 +653,6 @@
             this.btn_Merchant.Size = new System.Drawing.Size(47, 12);
             this.btn_Merchant.TabIndex = 2;
             this.btn_Merchant.Text = "商户(0)";
-            // 
-            // 统计上下级数量ToolStripMenuItem
-            // 
-            this.统计上下级数量ToolStripMenuItem.Name = "统计上下级数量ToolStripMenuItem";
-            this.统计上下级数量ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.统计上下级数量ToolStripMenuItem.Text = "统计上下级数量";
-            this.统计上下级数量ToolStripMenuItem.Click += new System.EventHandler(this.统计上下级数量ToolStripMenuItem_Click);
             // 
             // employeeLevelMain
             // 

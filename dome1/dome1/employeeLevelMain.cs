@@ -63,7 +63,7 @@ namespace dome1
             this.getLog("");
             //管理员
             toolStripStatusLabel1.Text += PublicField.userName;
-
+            Console.WriteLine("欢迎您!管理员:"+PublicField.userName);
         }
 
 
@@ -80,6 +80,7 @@ namespace dome1
             //循环遍历
             foreach (employeeLevel temp1 in parent1) {
                list.Add(temp1);
+               Console.WriteLine(temp1.Id+"-----父级：" +temp1.UserName + ",工号:" + temp1.JobNumber + ",录入时间:" + temp1.DateTime);
                //再次调用，直到没有父级为止
                this.getParentCount(temp1.Parent_id,list);
 
@@ -99,6 +100,7 @@ namespace dome1
             foreach (employeeLevel temp1 in parent1)
             {
                 st.Add(temp1);
+                Console.WriteLine(temp1.Id+"-----子级：" + temp1.UserName + ",工号:" + temp1.JobNumber + ",录入时间:" + temp1.DateTime);
                 //再次调用，直到没有下级为止
                 this.getSubordinateCount(temp1.Id, st);
             }
@@ -318,7 +320,7 @@ namespace dome1
                 int num = Int32.Parse(parent_id);
                 //根据id查询
                 List<employeeLevel> parent1=new List<employeeLevel>();
-                int count = 0;
+                //int count = 0;
                 this.getParentCount(num, parent1);
 
                 //清空listView3
@@ -1150,6 +1152,8 @@ namespace dome1
             this.dataTreeView(null);
         }
 
+
+        List<employeeLevel> ttst = new List<employeeLevel>();
         /// <summary>
         /// 统计上下级数量
         /// </summary>
@@ -1157,37 +1161,41 @@ namespace dome1
         /// <param name="e"></param>
         private void 统计上下级数量ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Console.WriteLine("统计上下级数量,等待时间较长是否开始?");
             DialogResult dr =  MessageBox.Show("统计上下级数量,等待时间较长是否开始?", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dr != DialogResult.Yes) return; //点取消的代码  
+            if (dr != DialogResult.Yes) {
+                Console.WriteLine("---------操作No"); return; //点取消的代码  
+            }
+            Console.WriteLine("---------操作YES! 正在继续..");
+            Console.Title = "统计上下级";
             //得到所有数据
             List<employeeLevel> st = sql.getEmployeeLevel(null);
-
+            this.Hide();
             //遍历集合
             foreach (employeeLevel temp in st)
             {
                 //MessageBox.Show("开始统计"+temp.UserName+",是否开始?");
+                Console.WriteLine("开始统计："+temp.UserName+",工号:"+temp.JobNumber+",录入时间:"+temp.DateTime);
                 //统计上级总数
-                int count = 0;
-                List<employeeLevel> ttst = new List<employeeLevel>();
+                ttst.Clear();
                 this.getParentCount(temp.Parent_id, ttst);
                 temp.SuperiorNumber = ttst.Count.ToString();
 
-
-                ttst = new List<employeeLevel>();
                 //调用统计下级
+                ttst.Clear();
                 this.getSubordinateCount(temp.Id, ttst);
                 temp.SubordinateNumber = ttst.Count.ToString();
                 //执行修改
                 sql.setEmployeeLevelUpdate(temp);
-
+                Console.WriteLine(temp.UserName + ">>统计结束! 上级="+temp.SuperiorNumber+",下级="+temp.SubordinateNumber);
                 
             }
             MessageBox.Show("统计结束！准备刷新..");
 
+            this.Show();
             //调用树
             this.dataTreeView(null);
         }
-
 
     }
 }

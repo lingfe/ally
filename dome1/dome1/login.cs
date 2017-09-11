@@ -33,11 +33,13 @@ namespace dome1
             string userName=textBox1.Text;
             if (userName == "") {
                 MessageBox.Show("用户名不能为空！");
+                Console.WriteLine("*******提示:用户名不能为空!");
                 return;
             }
             string password = textBox2.Text;
             if (password == "") {
                 MessageBox.Show("密码不能为空!");
+                Console.WriteLine("*******提示:密码不能为空!");
                 return;
             }
 
@@ -46,6 +48,7 @@ namespace dome1
             if (st.Count > 0)
             {
                 MessageBox.Show("登录成功！");
+                Console.WriteLine("*******登录成功!");
                 PublicField.userName = st[0].UserName;
                 employeeLevelMain main = new employeeLevelMain();
                 main.Show();
@@ -55,6 +58,7 @@ namespace dome1
             }
             else {
                 MessageBox.Show("登录失败！");
+                Console.WriteLine("*******登录失败！");
             }
 
         }
@@ -66,9 +70,17 @@ namespace dome1
         /// <param name="e"></param>
         private void btn_close_Click(object sender, EventArgs e)
         {
+            Console.WriteLine("*******再见！");
             this.Close();
             sql.close();
             Application.Exit();
         }
+
+        private void login_Load(object sender, EventArgs e)
+        {
+           
+            Console.WriteLine("*******准备登录了吗？*********");
+        }
+
     }
 }
