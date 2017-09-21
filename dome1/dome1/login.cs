@@ -78,8 +78,45 @@ namespace dome1
 
         private void login_Load(object sender, EventArgs e)
         {
-           
+            this.getxin();
             Console.WriteLine("*******准备登录了吗？*********");
+
+
+        }
+
+        public void getxin() {
+
+            int i, j, k, l, m;
+            char c='*';
+
+            for (i = 1; i <= 5; i++) Console.WriteLine();
+
+            for (i = 1; i <=3; i++) {
+                for (j = 1; j <= 32 - 2 * i; j++) Console.Write(" ");
+                for (k = 1; k <= 4 * i + 1; k++) Console.Write("*");
+                for (l = 1; l <= 13 - 4 * i; l++) Console.Write(" ");
+                for (m = 1; m <= 4 *1 + i; m++) Console.Write("*");
+                Console.WriteLine();
+            }
+
+            for (i = 1; i <=3; i++)
+            {
+                for (j = 1; j <= 24+1; j++) Console.Write(" ");
+                for (k = 1; k <=29; k++) Console.Write("*");
+                Console.WriteLine();
+            }
+
+            for (i = 7; i>=1; i--)
+            {
+                for (j = 1; j <= 40-2*i; j++) Console.Write(" ");
+                for (k = 1; k <= 4*i-1; k++) Console.Write("*");
+                Console.WriteLine();
+            }
+
+            for (i = 1; i <= 39; i++) Console.Write(" ");
+            Console.WriteLine("*");
+
+            for (i = 1; i <= 5; i++) Console.WriteLine();
         }
 
     }
