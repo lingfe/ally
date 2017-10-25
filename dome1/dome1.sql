@@ -70,5 +70,5 @@ CREATE TABLE admin(
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 --登录
-SELECT * FROM admin a WHERE a.userName='张三' AND a.password='123456';`dome1`
+SELECT * FROM admin a WHERE a.userName='张三' AND a.password='123456';
 SELECT * FROM admin a WHERE a.userName='张三' AND a.password='123456';
