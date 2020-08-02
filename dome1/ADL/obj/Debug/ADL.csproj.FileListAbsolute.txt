@@ -12,3 +12,10 @@ G:\ally\dome1\ADL\bin\Debug\Model.pdb
 G:\ally\dome1\ADL\obj\Debug\ADL.csprojResolveAssemblyReference.cache
 G:\ally\dome1\ADL\obj\Debug\ADL.dll
 G:\ally\dome1\ADL\obj\Debug\ADL.pdb
+C:\AworkingSpace\git\ally\dome1\ADL\bin\Debug\ADL.dll
+C:\AworkingSpace\git\ally\dome1\ADL\bin\Debug\ADL.pdb
+C:\AworkingSpace\git\ally\dome1\ADL\bin\Debug\Model.dll
+C:\AworkingSpace\git\ally\dome1\ADL\bin\Debug\Model.pdb
+C:\AworkingSpace\git\ally\dome1\ADL\obj\Debug\ADL.csprojResolveAssemblyReference.cache
+C:\AworkingSpace\git\ally\dome1\ADL\obj\Debug\ADL.dll
+C:\AworkingSpace\git\ally\dome1\ADL\obj\Debug\ADL.pdb

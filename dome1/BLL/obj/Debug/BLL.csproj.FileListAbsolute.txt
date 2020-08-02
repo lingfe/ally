@@ -16,3 +16,12 @@ G:\ally\dome1\BLL\bin\Debug\Model.pdb
 G:\ally\dome1\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
 G:\ally\dome1\BLL\obj\Debug\BLL.dll
 G:\ally\dome1\BLL\obj\Debug\BLL.pdb
+C:\AworkingSpace\git\ally\dome1\BLL\bin\Debug\BLL.dll
+C:\AworkingSpace\git\ally\dome1\BLL\bin\Debug\BLL.pdb
+C:\AworkingSpace\git\ally\dome1\BLL\bin\Debug\ADL.dll
+C:\AworkingSpace\git\ally\dome1\BLL\bin\Debug\Model.dll
+C:\AworkingSpace\git\ally\dome1\BLL\bin\Debug\ADL.pdb
+C:\AworkingSpace\git\ally\dome1\BLL\bin\Debug\Model.pdb
+C:\AworkingSpace\git\ally\dome1\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+C:\AworkingSpace\git\ally\dome1\BLL\obj\Debug\BLL.dll
+C:\AworkingSpace\git\ally\dome1\BLL\obj\Debug\BLL.pdb

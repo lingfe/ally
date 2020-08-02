@@ -32,7 +32,7 @@ namespace ADL
         /// 本地  : ip=192.168.1.104;port=3306;
         /// </summary>
         // MySqlConnection con = new MySqlConnection("server=39.108.118.48;port=3306;user id=dahuo;CharSet=utf8;password=dahuo;database=ally"); //根据自己的设置http://sosoft.cnblogs.com/
-        MySqlConnection con = new MySqlConnection("server=119.23.59.68;port=330;user id=root;CharSet=utf8;password=root;database=ally"); //根据自己的设置http://sosoft.cnblogs.com/
+        MySqlConnection con = new MySqlConnection("server=localhost;port=3306;user id=root;CharSet=utf8;password=root;database=ally"); //根据自己的设置http://sosoft.cnblogs.com/
         
         MySqlCommand cmd;
         MySqlDataReader dr;
