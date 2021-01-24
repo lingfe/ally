@@ -7,3 +7,8 @@ G:\ally\dome1\Model\bin\Debug\Model.pdb
 G:\ally\dome1\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
 G:\ally\dome1\Model\obj\Debug\Model.dll
 G:\ally\dome1\Model\obj\Debug\Model.pdb
+C:\AworkingSpace\git\ally\dome1\Model\bin\Debug\Model.dll
+C:\AworkingSpace\git\ally\dome1\Model\bin\Debug\Model.pdb
+C:\AworkingSpace\git\ally\dome1\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+C:\AworkingSpace\git\ally\dome1\Model\obj\Debug\Model.dll
+C:\AworkingSpace\git\ally\dome1\Model\obj\Debug\Model.pdb
